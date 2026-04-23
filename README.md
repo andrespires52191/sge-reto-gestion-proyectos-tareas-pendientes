@@ -67,3 +67,36 @@ organizadas por estado y visualización de dependencias o bloqueos entre tareas.
 - Vista de tareas por responsable
 - Validación para impedir cerrar tareas bloqueadas
 - Resumen de progreso por proyecto
+
+## Entregable
+El objetivo es construir una aplicación web funcional con Django. Se espera una solución
+bien estructurada, navegable y con las funcionalidades principales del reto implementadas
+correctamente. La prioridad aquí está en el modelado, la persistencia de datos, la lógica
+básica de negocio, las vistas, las plantillas y la usabilidad general. Hay que incorporar
+funcionalidades javascript y CSS. Se deberá realizar una presentación final del proyecto
+realizando una demo del funcionamiento, no solo el resultado final, sino también el
+entendimiento técnico de la solución implementada.
+La presentación deberá incluir, como mínimo, los siguientes apartados:
+1. Presentación breve del proyecto (45’’): contexto, objetivo y problema que resuelve.
+2. Diseño de la solución (2’): funcionalidades planteadas, modelo de datos y estructura
+general de interfaces.
+3. Planificación y organización del equipo (1,5’): reparto del trabajo, coordinación y
+evolución del proyecto.
+4. Implementación y demostración (5-6’): explicación técnica de las funcionalidades
+desarrolladas y demostración en funcionamiento. Esta será la parte principal de la
+presentación.
+5. Conclusiones (45’’): valoración final del trabajo realizado, dificultades encontradas y
+posibles mejoras futuras.
+
+## Material a entregar en la presentación final
+- Diapositivas en PDF
+- Diapositivas en PowerPoint
+
+##  Documento de organización del trabajo
+Se entregará un documento en el que se detalle, en orden cronológico, el trabajo realizado
+por cada integrante del equipo desde el inicio del proyecto. Este documento deberá
+entregarse en formato Excel y actualizarse progresivamente. No debe reflejar únicamente
+tareas genéricas, sino trabajo concreto y verificable.
+
+## Fecha límite de entrega
+28/05/2026 a las 23:59
