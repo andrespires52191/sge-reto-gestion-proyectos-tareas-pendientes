@@ -33,3 +33,12 @@ Entra en el proyecto:
 
 Ejecuta el servidor:
 > python manage.py runserver
+
+Dependencias neon y ngrok
+> pip install django psycopg2-binary dj-database-url python-decouple
+
+Guardar dependencias
+> pip freeze > requirements.txt
+
+Instalar dependencias
+> pip install -r requirements.txt
