@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarea</title>
+</head>
+<body>
+<h1>Tareas</h1>
+{% if not tareas %}
+<p>No hay tareas disponibles.</p>
+{% else %}
+<table style="border-collapse: collapse;" border="1">
+    <thead>
+    <tr>
+        <th>Tarea</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for tarea in tareas %}
+    <tr>
+        <td>{{ tarea.titulo }}</td>
+        <td>
+            <a href="{% url 'tarea:mostrar_tarea' tarea.id %}">Ver</a>
+            <a href="{% url 'tarea:editar_tarea' tarea.id %}">Editar</a>
+            <a href="{% url 'tarea:borrar_tarea' tarea.id %}">Borrar</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<a href="{% url 'tarea:crear_tarea' %}">Crear Nueva Tarea</a>
+</body>
+</html>

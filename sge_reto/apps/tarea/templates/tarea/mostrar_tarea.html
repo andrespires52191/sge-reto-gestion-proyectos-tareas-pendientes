@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ tarea.titulo }}</title>
+</head>
+<body>
+<h1>{{ tarea.titulo }}</h1>
+<p><strong>ID:</strong> {{ tarea.id }}</p>
+<a href="{% url 'tarea:editar_tarea' tarea.id %}">Editar</a>
+<a href="{% url 'tarea:borrar_tarea' tarea.id %}">Borrar</a>
+<a href="{% url 'tarea:tarea' %}">Volver</a>
+</body>
+</html>
