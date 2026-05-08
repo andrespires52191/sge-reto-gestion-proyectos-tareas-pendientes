@@ -42,3 +42,28 @@ Guardar dependencias
 
 Instalar dependencias
 > pip install -r requirements.txt
+
+Actualizar venv
+> python -m venv --upgrade venv
+
+Crear sub-app dentro de ruta /apps/
+> python manage.py startapp nombre_app apps/nombre_app
+
+Generar una nueva SECRET_KEY
+> python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+Crear migraciones
+> python manage.py migrate 
+> python manage.py makemigrations
+
+Permisos de ejecución de scripts
+> chmod +x run_public.sh
+
+Configuración de ngrok (https://dashboard.ngrok.com/get-started/setup):
+> ngrok config add-authtoken TU_TOKEN_AQUI
+
+Establecer la conexión de django con ngrok.
+Se le puede poner usuario y contraseña a la conexión. Por si mismos, estos
+datos no son permanentes solo valen mientras se esta ejecutando el comando.
+> ngrok http 8000
+> ngrok http 8000 --basic-auth "usuario:contraseña"
