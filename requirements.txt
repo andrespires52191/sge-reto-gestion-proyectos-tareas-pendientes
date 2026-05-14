@@ -4,3 +4,4 @@ dj-database-url # config bd a partir de URL
 python-decouple # leer variables de archivo .env
 djangorestframework # herramienta para APIs REST
 djangorestframework-simplejwt # para autenticación JWT
+django-cors-headers # para manejar CORS con Vue
