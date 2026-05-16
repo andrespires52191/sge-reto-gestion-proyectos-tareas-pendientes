@@ -18,8 +18,7 @@ class Proyecto(models.Model):
     descripcion = models.TextField()
     fecha_inicio = models.DateField()
     fecha_fin_prevista = models.DateField(null=True, blank=True)
-    estado = models.IntegerField(
-    )
+    estado = models.IntegerField()
     responsable_principal = models.ForeignKey(
         "empleado.Empleado",
         related_name="proyectos_asignados",  # empleado.proyectos_asignados.all()
