@@ -12,6 +12,9 @@
             <RouterLink to="/" class="nav-link" exact-active-class="active">Inicio</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink to="/empleado" class="nav-link" exact-active-class="active">Empleados</RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink to="/proyecto" class="nav-link" exact-active-class="active">Proyectos</RouterLink>
           </li>
           <li class="nav-item">
