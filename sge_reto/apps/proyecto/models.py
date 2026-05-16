@@ -15,14 +15,16 @@ from django.db import models
 # Create your models here.
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=200)
-    descripcion = models.TextField()
-    fecha_inicio = models.DateField()
+    descripcion = models.TextField(null=True, blank=True)
+    fecha_inicio = models.DateField(null=True, blank=True)
     fecha_fin_prevista = models.DateField(null=True, blank=True)
     estado = models.IntegerField()
     responsable_principal = models.ForeignKey(
         "empleado.Empleado",
         related_name="proyectos_asignados",  # empleado.proyectos_asignados.all()
         on_delete=models.PROTECT,
+        null=True,
+        blank=True
     )
 
     def __str__(self):

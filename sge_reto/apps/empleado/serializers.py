@@ -7,6 +7,7 @@ class EmpleadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empleado
         fields = [
+            "id",
             "dni",
             "nombre",
             "apellidos",
