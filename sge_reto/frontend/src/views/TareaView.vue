@@ -27,35 +27,49 @@ const formatearFecha = (fechaISO: string | null) => {
 </script>
 
 <template>
-  <main style="padding: 2rem; max-width: 900px; margin: 0 auto; font-family: sans-serif;">
-    <h1>Gestión de Tareas</h1>
+  <div>
+    <h1 class="mb-4">Gestión de Tareas</h1>
 
-    <div v-if="cargando">Conectando con Django...</div>
-    <div v-else-if="error" style="color: red; padding: 1rem; border: 1px solid red;">
+    <div v-if="cargando" class="alert alert-info">Conectando con Django...</div>
+    <div v-else-if="error" class="alert alert-danger">
       <strong>Error:</strong> {{ error }}
     </div>
 
     <div v-else>
-      <div v-if="tareas.length === 0">No hay tareas en la base de datos.</div>
+      <div v-if="tareas.length === 0" class="alert alert-info">No hay tareas en la base de datos.</div>
 
-      <div v-for="tarea in tareas" :key="tarea.id"
-           style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; border-radius: 8px;">
+      <div class="row">
+        <div class="col-12" v-for="tarea in tareas" :key="tarea.id">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h5 class="card-title mb-0">
+                  #{{ tarea.id }} - {{ tarea.titulo }}
+                </h5>
+                <span class="badge bg-secondary">
+                  {{ tarea.prioridad }}
+                </span>
+              </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
-          <h2 style="margin: 0 0 0.5rem 0;">#{{ tarea.id }} - {{ tarea.titulo }}</h2>
-          <span style="background: #eee; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9em;">
-            Prioridad: <strong>{{ tarea.prioridad }}</strong>
-          </span>
-        </div>
+              <p class="card-text text-muted">
+                {{ tarea.descripcion }}
+              </p>
 
-        <p style="color: #555; margin-bottom: 1rem;">{{ tarea.descripcion }}</p>
-
-        <div style="font-size: 0.9em; color: #666; display: flex; gap: 1rem;">
-          <span><strong>Estado:</strong> {{ tarea.estado }}</span>
-          <span><strong>Asignada a:</strong> {{ tarea.responsable_asignado || 'Sin asignar' }}</span>
-          <span><strong>Inicio:</strong> {{ formatearFecha(tarea.fecha_inicio) }}</span>
+              <div class="row text-muted small">
+                <div class="col-md-3">
+                  <strong>Estado:</strong> {{ tarea.estado }}
+                </div>
+                <div class="col-md-3">
+                  <strong>Asignada a:</strong> {{ tarea.responsable_asignado || 'Sin asignar' }}
+                </div>
+                <div class="col-md-3">
+                  <strong>Inicio:</strong> {{ formatearFecha(tarea.fecha_inicio) }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
