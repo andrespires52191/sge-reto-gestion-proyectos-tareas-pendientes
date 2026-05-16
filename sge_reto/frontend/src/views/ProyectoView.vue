@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {computed, onMounted} from 'vue'
-import {useTareaStore} from '@/stores/tareaStore'
+import {useProyectoStore} from '@/stores/proyectoStore'
 
-const tareaStore = useTareaStore()
-const tareas = computed(() => tareaStore.tareas)
+const proyectoStore = useProyectoStore()
+const proyectos = computed(() => proyectoStore.proyectos)
 
 onMounted(() => {
-  tareaStore.cargarTareas()
+  proyectoStore.cargarProyectos()
 })
 
 const formatearFecha = (fechaISO: string | null) => {
@@ -21,40 +21,37 @@ const formatearFecha = (fechaISO: string | null) => {
   <div>
     <h1 class="mb-4">Gestión de Tareas</h1>
 
-    <div v-if="tareaStore.cargando" class="alert alert-info">Conectando con Django...</div>
-    <div v-else-if="tareaStore.error" class="alert alert-danger">
-      <strong>Error:</strong> {{ tareaStore.error }}
+    <div v-if="proyectoStore.cargando" class="alert alert-info">Conectando con Django...</div>
+    <div v-else-if="proyectoStore.error" class="alert alert-danger">
+      <strong>Error:</strong> {{ proyectoStore.error }}
     </div>
 
     <div v-else>
-      <div v-if="tareas.length === 0" class="alert alert-info">No hay tareas en la base de datos.</div>
+      <div v-if="proyectos.length === 0" class="alert alert-info">No hay proyectos en la base de datos.</div>
 
       <div class="row">
-        <div class="col-12" v-for="tarea in tareas" :key="tarea.id">
+        <div class="col-12" v-for="proyecto in proyectos" :key="proyecto.id">
           <div class="card mb-3">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title mb-0">
-                  #{{ tarea.id }} - {{ tarea.titulo }}
+                  #{{ proyecto.id }} - {{ proyecto.nombre }}
                 </h5>
-                <span class="badge bg-secondary">
-                  {{ tarea.prioridad }}
-                </span>
               </div>
 
               <p class="card-text text-muted">
-                {{ tarea.descripcion }}
+                {{ proyecto.descripcion }}
               </p>
 
               <div class="row text-muted small">
                 <div class="col-md-3">
-                  <strong>Estado:</strong> {{ tarea.estado }}
+                  <strong>Estado:</strong> {{ proyecto.estado }}
                 </div>
                 <div class="col-md-3">
-                  <strong>Asignada a:</strong> {{ tarea.responsable_asignado || 'Sin asignar' }}
+                  <strong>Asignada a:</strong> {{ proyecto.responsable_principal || 'Sin responsable' }}
                 </div>
                 <div class="col-md-3">
-                  <strong>Inicio:</strong> {{ formatearFecha(tarea.fecha_inicio) }}
+                  <strong>Inicio:</strong> {{ formatearFecha(proyecto.fecha_inicio) }}
                 </div>
               </div>
             </div>

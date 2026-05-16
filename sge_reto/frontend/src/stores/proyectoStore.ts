@@ -1,19 +1,19 @@
 import {defineStore} from 'pinia'
 import {ref} from 'vue'
-import type {Tarea} from '@/types'
+import type {Proyecto} from '@/types'
 
-const ENDPOINT = 'http://localhost:8000/api/tarea/tareas/'
+const ENDPOINT = 'http://localhost:8000/api/proyecto/proyectos/'
 
-export const useTareaStore = defineStore('tarea', () => {
-    const tareas = ref<Tarea[]>([])
+export const useProyectoStore = defineStore('proyecto', () => {
+    const proyectos = ref<Proyecto[]>([])
     const cargando = ref(true)
     const error = ref<string | null>(null)
 
-    const cargarTareas = async () => {
+    const cargarProyectos = async () => {
         try {
             const response = await fetch(ENDPOINT)
             if (!response.ok) throw new Error('Error al conectar con la API de Django')
-            tareas.value = await response.json()
+            proyectos.value = await response.json()
         } catch (err: any) {
             error.value = err.message
         } finally {
@@ -22,9 +22,9 @@ export const useTareaStore = defineStore('tarea', () => {
     }
 
     return {
-        tareas,
+        proyectos,
         cargando,
         error,
-        cargarTareas
+        cargarProyectos
     }
 })
