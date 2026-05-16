@@ -3,5 +3,5 @@ from .views_api import DependenciaViewSet, TareaViewSet
 
 router = DefaultRouter()
 router.register(r'tareas', TareaViewSet, basename='api-tareas')
-router.register(r'dependencia', DependenciaViewSet, basename='api-dependencia')
+router.register(r'dependencias', DependenciaViewSet, basename='api-dependencias')
 urlpatterns = router.urls

@@ -8,7 +8,7 @@ const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:8000/tarea/api/tareas')
+    const response = await fetch('http://localhost:8000/api/tarea/tareas')
     if (!response.ok) throw new Error('Error al conectar con la API de Django')
     tareas.value = await response.json()
   } catch (err: any) {
