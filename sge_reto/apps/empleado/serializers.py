@@ -14,4 +14,5 @@ class EmpleadoSerializer(serializers.ModelSerializer):
             "email",
             "telefono",
             "rol",
+            "tareas_asignadas",
         ]

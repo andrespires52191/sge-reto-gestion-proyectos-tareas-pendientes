@@ -19,7 +19,7 @@ const formatearFecha = (fechaISO: string | null) => {
 
 <template>
   <div>
-    <h1 class="mb-4">Gestión de Tareas</h1>
+    <h1 class="mb-4">Empleados</h1>
 
     <div v-if="empleadoStore.cargando" class="alert alert-info">Conectando con Django...</div>
     <div v-else-if="empleadoStore.error" class="alert alert-danger">
@@ -49,6 +49,15 @@ const formatearFecha = (fechaISO: string | null) => {
                 <div class="col-md-3">
                   <strong>Email:</strong> {{ empleado.email }}
                 </div>
+              </div>
+
+              <div>
+                Tareas asignadas:
+                <ul>
+                  <li v-for="(tarea, index) in empleado.tareas_asignadas">
+                    {{ tarea }}
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

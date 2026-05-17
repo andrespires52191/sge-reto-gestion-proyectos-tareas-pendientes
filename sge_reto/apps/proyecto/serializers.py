@@ -14,4 +14,5 @@ class ProyectoSerializer(serializers.ModelSerializer):
             "fecha_fin_prevista",
             "estado",
             "responsable_principal",
+            "tareas_asociadas",
         ]

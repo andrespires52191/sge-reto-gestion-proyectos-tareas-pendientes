@@ -19,7 +19,7 @@ const formatearFecha = (fechaISO: string | null) => {
 
 <template>
   <div>
-    <h1 class="mb-4">Gestión de Tareas</h1>
+    <h1 class="mb-4">Tareas</h1>
 
     <div v-if="tareaStore.cargando" class="alert alert-info">Conectando con Django...</div>
     <div v-else-if="tareaStore.error" class="alert alert-danger">
@@ -45,16 +45,21 @@ const formatearFecha = (fechaISO: string | null) => {
               <p class="card-text text-muted">
                 {{ tarea.descripcion }}
               </p>
-
+              <div>
+                <strong>Proyecto:</strong> {{ tarea.proyecto_asociado || 'Sin asignar' }}
+              </div>
               <div class="row text-muted small">
-                <div class="col-md-3">
-                  <strong>Estado:</strong> {{ tarea.estado }}
-                </div>
                 <div class="col-md-3">
                   <strong>Asignada a:</strong> {{ tarea.responsable_asignado || 'Sin asignar' }}
                 </div>
                 <div class="col-md-3">
+                  <strong>Estado:</strong> {{ tarea.estado }}&percnt;
+                </div>
+                <div class="col-md-3">
                   <strong>Inicio:</strong> {{ formatearFecha(tarea.fecha_inicio) }}
+                </div>
+                <div class="col-md-3">
+                  <strong>Previsto:</strong> {{ formatearFecha(tarea.fecha_fin_prevista) }}
                 </div>
               </div>
             </div>

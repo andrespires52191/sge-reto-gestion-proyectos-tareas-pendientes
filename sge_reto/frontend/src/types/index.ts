@@ -6,16 +6,18 @@ export interface Empleado {
     email: string;
     telefono: string;
     rol: string;
+    tareas_asignadas: number[]; // Tarea[]
 }
 
 export interface Proyecto {
     id: number;
     nombre: string;
     descripcion: string | null;
-    fecha_inicio: string | null; // fecha ISO 8601 o null
-    fecha_fin_prevista: string | null; // fecha ISO 8601 o null
-    estado: number;
-    responsable_principal: number | null;
+    fecha_inicio: string | null; // fecha ISO 8601
+    fecha_fin_prevista: string | null; // fecha ISO 8601
+    estado: number; // 0-100%
+    responsable_principal: number | null; // Empleado
+    tareas_asociadas: number[]; // Tarea[]
 }
 
 export interface Tarea {
@@ -24,10 +26,10 @@ export interface Tarea {
     descripcion: string;
     estado: number;
     prioridad: 'baja' | 'media' | 'alta'; // choices en el modelo
-    fecha_inicio: string | null; // fecha ISO 8601 o null
-    fecha_fin_prevista: string | null; // fecha ISO 8601 o null
-    proyecto_asociado: number | null; // FK Proyecto
-    responsable_asignado: number | null; // FK Empleado
+    fecha_inicio: string | null; // fecha ISO 8601
+    fecha_fin_prevista: string | null; // fecha ISO 8601
+    proyecto_asociado: number | null; // Proyecto
+    responsable_asignado: number | null; // Empleado
 }
 
 export interface Dependencia {
