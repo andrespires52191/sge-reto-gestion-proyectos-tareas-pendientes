@@ -1,0 +1,29 @@
+<script setup lang="ts">
+import type { Dependencia } from '@/types'
+
+defineProps<{ dependencia: Dependencia }>()
+</script>
+
+<template>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <h5 class="card-title mb-0">
+          Dependencia #{{ dependencia.id }}
+        </h5>
+      </div>
+
+      <div class="row text-muted small">
+        <div class="col-md-4">
+          <strong>Tipo de dependencia:</strong> {{ dependencia.tipo_dependencia }}
+        </div>
+        <div class="col-md-4">
+          <strong>Tarea Origen:</strong> {{ dependencia.tarea_origen }}
+        </div>
+        <div class="col-md-4">
+          <strong>Tarea Dependiente:</strong> {{ dependencia.tarea_dependiente }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -4,6 +4,7 @@ import HomeView from "@/views/HomeView.vue";
 import EmpleadoView from "@/views/EmpleadoView.vue";
 import ProyectoView from "@/views/ProyectoView.vue";
 import TareaView from "@/views/TareaView.vue";
+import DependenciaView from "@/views/DependenciaView.vue";
 import {useAuthStore} from '@/stores/authStore';
 import LoginView from "@/views/LoginView.vue";
 
@@ -13,6 +14,7 @@ const routes = [
     {path: '/empleado', component: EmpleadoView, meta: {requiresAuth: true}},
     {path: '/proyecto', component: ProyectoView, meta: {requiresAuth: true}},
     {path: '/tarea', component: TareaView, meta: {requiresAuth: true}},
+    {path: '/dependencia', component: DependenciaView, meta: {requiresAuth: true}},
 ]
 
 const router = createRouter({

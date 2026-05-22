@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import BotonLogout from "@/components/BotonLogout.vue";
-import {ref, onMounted} from 'vue';
 import {useAuthStore} from '@/stores/authStore';
-import api from '@/plugins/axios';
 
 const authStore = useAuthStore();
 </script>
@@ -24,6 +22,9 @@ const authStore = useAuthStore();
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
             <RouterLink to="/tarea" class="nav-link" exact-active-class="active">Tareas</RouterLink>
+          </li>
+          <li v-if="authStore.isAuthenticated" class="nav-item">
+            <RouterLink to="/dependencia" class="nav-link" exact-active-class="active">Dependencias</RouterLink>
           </li>
         </ul>
         <BotonLogout v-if="authStore.isAuthenticated" class="ms-auto"/>
