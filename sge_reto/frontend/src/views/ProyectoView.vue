@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import {computed, onMounted} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {useProyectoStore} from '@/stores/proyectoStore'
 import ProyectoCard from '@/components/ProyectoCard.vue'
+import ProyectoEditCard from '@/components/ProyectoEditCard.vue'
 
 const proyectoStore = useProyectoStore()
 const proyectos = computed(() => proyectoStore.proyectos)
+
+const editandoId = ref<number | null>(null)
 
 onMounted(() => {
   proyectoStore.cargarProyectos()
@@ -25,7 +28,17 @@ onMounted(() => {
 
       <div class="row">
         <div class="col-12" v-for="proyecto in proyectos" :key="proyecto.id">
-          <ProyectoCard :proyecto="proyecto" />
+          <ProyectoEditCard
+            v-if="editandoId === proyecto.id"
+            :proyecto="proyecto"
+            @cancelar="editandoId = null"
+            @guardado="editandoId = null"
+          />
+          <ProyectoCard
+            v-else
+            :proyecto="proyecto"
+            @editar="editandoId = proyecto.id"
+          />
         </div>
       </div>
     </div>

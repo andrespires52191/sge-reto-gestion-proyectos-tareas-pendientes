@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import {computed, onMounted} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {useEmpleadoStore} from '@/stores/empleadoStore'
 import EmpleadoCard from '@/components/EmpleadoCard.vue'
+import EmpleadoEditCard from '@/components/EmpleadoEditCard.vue'
 
 const empleadoStore = useEmpleadoStore()
 const empleados = computed(() => empleadoStore.empleados)
+
+const editandoId = ref<number | null>(null)
 
 onMounted(() => {
   empleadoStore.cargarEmpleados()
@@ -25,7 +28,17 @@ onMounted(() => {
 
       <div class="row">
         <div class="col-12" v-for="empleado in empleados" :key="empleado.id">
-          <EmpleadoCard :empleado="empleado" />
+          <EmpleadoEditCard
+            v-if="editandoId === empleado.id"
+            :empleado="empleado"
+            @cancelar="editandoId = null"
+            @guardado="editandoId = null"
+          />
+          <EmpleadoCard
+            v-else
+            :empleado="empleado"
+            @editar="editandoId = empleado.id"
+          />
         </div>
       </div>
     </div>

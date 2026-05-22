@@ -4,8 +4,6 @@ import type {Proyecto} from '@/types'
 import api from "@/plugins/axios";
 import axios from 'axios';
 
-const ENDPOINT = '/api/proyecto/proyectos/'
-
 export const useProyectoStore = defineStore('proyecto', () => {
     const proyectos = ref<Proyecto[]>([])
     const cargando = ref(true)
@@ -13,7 +11,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
 
     const cargarProyectos = async () => {
         try {
-            const {data} = await api.get(ENDPOINT);
+            const {data} = await api.get('/api/proyecto/proyectos/');
             proyectos.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -25,10 +23,26 @@ export const useProyectoStore = defineStore('proyecto', () => {
         }
     }
 
+    const actualizarProyecto = async (proyecto: Proyecto) => {
+        try {
+            const url = `/api/proyecto/proyectos/${proyecto.id}/`;
+            const { data } = await api.patch(url, proyecto);
+            const index = proyectos.value.findIndex(p => p.id === proyecto.id);
+            if (index !== -1) {
+                proyectos.value[index] = data;
+            }
+            return true;
+        } catch (err) {
+            console.error('Error al actualizar proyecto:', err);
+            return false;
+        }
+    }
+
     return {
         proyectos,
         cargando,
         error,
-        cargarProyectos
+        cargarProyectos,
+        actualizarProyecto
     }
 })

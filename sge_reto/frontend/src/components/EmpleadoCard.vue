@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Empleado } from '@/types'
 
-defineProps<{ empleado: Empleado }>()
+const props = defineProps<{ empleado: Empleado }>()
+const emit = defineEmits(['editar'])
 </script>
 
 <template>
@@ -11,6 +12,9 @@ defineProps<{ empleado: Empleado }>()
         <h5 class="card-title mb-0">
           #{{ empleado.id }} - {{ empleado.nombre }} {{ empleado.apellidos }}
         </h5>
+        <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
+          Editar
+        </button>
       </div>
 
       <div class="row text-muted small">

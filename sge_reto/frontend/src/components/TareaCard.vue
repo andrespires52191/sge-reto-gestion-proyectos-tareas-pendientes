@@ -2,6 +2,7 @@
 import type { Tarea } from '@/types'
 
 defineProps<{ tarea: Tarea }>()
+const emit = defineEmits(['editar'])
 
 const formatearFecha = (fechaISO: string | null) => {
   if (fechaISO === null) return '';
@@ -18,9 +19,14 @@ const formatearFecha = (fechaISO: string | null) => {
         <h5 class="card-title mb-0">
           #{{ tarea.id }} - {{ tarea.titulo }}
         </h5>
-        <span class="badge bg-secondary">
-          {{ tarea.prioridad }}
-        </span>
+        <div>
+          <span class="badge bg-secondary me-2">
+            {{ tarea.prioridad }}
+          </span>
+          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
+            Editar
+          </button>
+        </div>
       </div>
 
       <p class="card-text text-muted">

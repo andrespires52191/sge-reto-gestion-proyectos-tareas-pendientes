@@ -4,8 +4,6 @@ import type {Tarea} from '@/types'
 import api from "@/plugins/axios";
 import axios from 'axios';
 
-const ENDPOINT = '/api/tarea/tareas/'
-
 export const useTareaStore = defineStore('tarea', () => {
     const tareas = ref<Tarea[]>([])
     const cargando = ref(true)
@@ -13,7 +11,7 @@ export const useTareaStore = defineStore('tarea', () => {
 
     const cargarTareas = async () => {
         try {
-            const { data } = await api.get(ENDPOINT);
+            const { data } = await api.get('/api/tarea/tareas/');
             tareas.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -25,10 +23,27 @@ export const useTareaStore = defineStore('tarea', () => {
         }
     }
 
+    const actualizarTarea = async (tarea: Tarea) => {
+        try {
+            // Aseguramos que la URL termine en / para evitar redirecciones de Django
+            const url = `/api/tarea/tareas/${tarea.id}/`;
+            const { data } = await api.patch(url, tarea);
+            const index = tareas.value.findIndex(t => t.id === tarea.id);
+            if (index !== -1) {
+                tareas.value[index] = data;
+            }
+            return true;
+        } catch (err) {
+            console.error('Error al actualizar tarea:', err);
+            return false;
+        }
+    }
+
     return {
         tareas,
         cargando,
         error,
-        cargarTareas
+        cargarTareas,
+        actualizarTarea
     }
 })

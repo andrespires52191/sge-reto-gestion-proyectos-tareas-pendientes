@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import {computed, onMounted} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {useTareaStore} from '@/stores/tareaStore'
 import TareaCard from '@/components/TareaCard.vue'
+import TareaEditCard from '@/components/TareaEditCard.vue'
 
 const tareaStore = useTareaStore()
 const tareas = computed(() => tareaStore.tareas)
+
+const editandoId = ref<number | null>(null)
 
 onMounted(() => {
   tareaStore.cargarTareas()
@@ -25,7 +28,17 @@ onMounted(() => {
 
       <div class="row">
         <div class="col-12" v-for="tarea in tareas" :key="tarea.id">
-          <TareaCard :tarea="tarea" />
+          <TareaEditCard
+            v-if="editandoId === tarea.id"
+            :tarea="tarea"
+            @cancelar="editandoId = null"
+            @guardado="editandoId = null"
+          />
+          <TareaCard
+            v-else
+            :tarea="tarea"
+            @editar="editandoId = tarea.id"
+          />
         </div>
       </div>
     </div>

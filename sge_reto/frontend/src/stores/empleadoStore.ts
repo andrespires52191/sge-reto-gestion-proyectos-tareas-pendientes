@@ -4,8 +4,6 @@ import type {Empleado} from '@/types'
 import api from "@/plugins/axios";
 import axios from 'axios';
 
-const ENDPOINT = '/api/empleado/empleados/'
-
 export const useEmpleadoStore = defineStore('empleado', () => {
     const empleados = ref<Empleado[]>([])
     const cargando = ref(true)
@@ -13,7 +11,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
 
     const cargarEmpleados = async () => {
         try {
-            const {data} = await api.get(ENDPOINT);
+            const {data} = await api.get('/api/empleado/empleados/');
             empleados.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -25,10 +23,26 @@ export const useEmpleadoStore = defineStore('empleado', () => {
         }
     }
 
+    const actualizarEmpleado = async (empleado: Empleado) => {
+        try {
+            const url = `/api/empleado/empleados/${empleado.id}/`;
+            const { data } = await api.patch(url, empleado);
+            const index = empleados.value.findIndex(e => e.id === empleado.id);
+            if (index !== -1) {
+                empleados.value[index] = data;
+            }
+            return true;
+        } catch (err) {
+            console.error('Error al actualizar empleado:', err);
+            return false;
+        }
+    }
+
     return {
         empleados,
         cargando,
         error,
-        cargarEmpleados
+        cargarEmpleados,
+        actualizarEmpleado
     }
 })

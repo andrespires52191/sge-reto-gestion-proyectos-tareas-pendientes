@@ -4,8 +4,6 @@ import type {Dependencia} from '@/types'
 import api from "@/plugins/axios";
 import axios from 'axios';
 
-const ENDPOINT = '/api/tarea/dependencias/'
-
 export const useDependenciaStore = defineStore('dependencia', () => {
     const dependencias = ref<Dependencia[]>([])
     const cargando = ref(true)
@@ -13,7 +11,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
 
     const cargarDependencias = async () => {
         try {
-            const { data } = await api.get(ENDPOINT);
+            const { data } = await api.get('/api/tarea/dependencias/');
             dependencias.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -25,11 +23,27 @@ export const useDependenciaStore = defineStore('dependencia', () => {
         }
     }
 
+    const actualizarDependencia = async (dependencia: Dependencia) => {
+        try {
+            const url = `/api/tarea/dependencias/${dependencia.id}/`;
+            const { data } = await api.patch(url, dependencia);
+            const index = dependencias.value.findIndex(d => d.id === dependencia.id);
+            if (index !== -1) {
+                dependencias.value[index] = data;
+            }
+            return true;
+        } catch (err) {
+            console.error('Error al actualizar dependencia:', err);
+            return false;
+        }
+    }
+
     return {
         dependencias,
         cargando,
         error,
-        cargarDependencias
+        cargarDependencias,
+        actualizarDependencia
     }
 })
 
