@@ -14,7 +14,7 @@ const authStore = useAuthStore();
         <RouterLink to="/" class="navbar-brand">Gestión de Proyectos</RouterLink>
         <ul class="nav nav-tabs border-0">
           <li v-if="authStore.isAuthenticated" class="nav-item">
-            <RouterLink to="/inicio" class="nav-link" exact-active-class="active">Inicio</RouterLink>
+            <RouterLink to="/" class="nav-link" exact-active-class="active">Inicio</RouterLink>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
             <RouterLink to="/empleado" class="nav-link" exact-active-class="active">Empleados</RouterLink>

@@ -1,16 +1,23 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import Dependencia, Tarea
 from .serializers import DependenciaSerializer, TareaSerializer
 
 
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 class TareaViewSet(viewsets.ModelViewSet):
     queryset = Tarea.objects.all()
     serializer_class = TareaSerializer
 
 
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 class DependenciaViewSet(viewsets.ModelViewSet):
     queryset = Dependencia.objects.all()
     serializer_class = DependenciaSerializer

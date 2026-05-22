@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
             localStorage.setItem('refresh_token', response.data.refresh);
 
             // Redirigir a la página principal o dashboard
-            router.push('/inicio');
+            router.push('/');
             return true;
         } catch (error) {
             console.error('Login failed:', error);

@@ -1,8 +1,10 @@
 import {defineStore} from 'pinia'
 import {ref} from 'vue'
 import type {Tarea} from '@/types'
+import api from "@/plugins/axios";
+import axios from 'axios';
 
-const ENDPOINT = 'http://localhost:8000/api/tarea/tareas/'
+const ENDPOINT = '/api/tarea/tareas/'
 
 export const useTareaStore = defineStore('tarea', () => {
     const tareas = ref<Tarea[]>([])
@@ -11,11 +13,13 @@ export const useTareaStore = defineStore('tarea', () => {
 
     const cargarTareas = async () => {
         try {
-            const response = await fetch(ENDPOINT)
-            if (!response.ok) throw new Error('Error al conectar con la API de Django')
-            tareas.value = await response.json()
-        } catch (err: any) {
-            error.value = err.message
+            const { data } = await api.get(ENDPOINT);
+            tareas.value = data;
+        } catch (err) {
+            if (axios.isAxiosError(err) || err instanceof Error)
+                error.value = err.message
+            else
+                error.value = 'Error al conectar con la API de Django'
         } finally {
             cargando.value = false
         }

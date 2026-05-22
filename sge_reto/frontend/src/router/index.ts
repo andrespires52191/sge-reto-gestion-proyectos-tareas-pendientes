@@ -8,9 +8,8 @@ import {useAuthStore} from '@/stores/authStore';
 import LoginView from "@/views/LoginView.vue";
 
 const routes = [
-    {path: '/', redirect: '/login'},
+    {path: '/', component: HomeView, meta: {requiresAuth: true}},
     {path: '/login', component: LoginView},
-    {path: '/inicio', component: HomeView},
     {path: '/empleado', component: EmpleadoView, meta: {requiresAuth: true}},
     {path: '/proyecto', component: ProyectoView, meta: {requiresAuth: true}},
     {path: '/tarea', component: TareaView, meta: {requiresAuth: true}},
