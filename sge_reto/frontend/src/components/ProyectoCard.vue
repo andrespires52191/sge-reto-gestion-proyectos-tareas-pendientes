@@ -34,6 +34,9 @@ const formatearFecha = (fechaISO: string | null) => {
         <div class="col-md-3">
           <strong>Inicio:</strong> {{ formatearFecha(proyecto.fecha_inicio) }}
         </div>
+        <div class="col-md-3">
+          <strong>Fin Previsto:</strong> {{ formatearFecha(proyecto.fecha_fin_prevista) }}
+        </div>
       </div>
 
       <div>

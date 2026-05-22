@@ -15,6 +15,9 @@ defineProps<{ empleado: Empleado }>()
 
       <div class="row text-muted small">
         <div class="col-md-3">
+          <strong>DNI:</strong> {{ empleado.dni }}
+        </div>
+        <div class="col-md-3">
           <strong>Rol:</strong> {{ empleado.rol }}
         </div>
         <div class="col-md-3">
