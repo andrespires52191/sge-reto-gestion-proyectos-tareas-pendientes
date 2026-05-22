@@ -9,6 +9,12 @@ const tareas = computed(() => tareaStore.tareas)
 
 const editandoId = ref<number | null>(null)
 
+const handleBorrar = async (id: number) => {
+  if (confirm('¿Estás seguro de que deseas borrar esta tarea?')) {
+    await tareaStore.borrarTarea(id)
+  }
+}
+
 onMounted(() => {
   tareaStore.cargarTareas()
 })
@@ -38,6 +44,7 @@ onMounted(() => {
             v-else
             :tarea="tarea"
             @editar="editandoId = tarea.id"
+            @borrar="handleBorrar(tarea.id)"
           />
         </div>
       </div>

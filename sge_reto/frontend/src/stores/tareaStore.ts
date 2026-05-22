@@ -39,11 +39,23 @@ export const useTareaStore = defineStore('tarea', () => {
         }
     }
 
+    const borrarTarea = async (id: number) => {
+        try {
+            await api.delete(`/api/tarea/tareas/${id}/`);
+            tareas.value = tareas.value.filter(t => t.id !== id);
+            return true;
+        } catch (err) {
+            console.error('Error al borrar tarea:', err);
+            return false;
+        }
+    }
+
     return {
         tareas,
         cargando,
         error,
         cargarTareas,
-        actualizarTarea
+        actualizarTarea,
+        borrarTarea
     }
 })

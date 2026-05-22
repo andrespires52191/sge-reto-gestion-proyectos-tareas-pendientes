@@ -9,6 +9,12 @@ const empleados = computed(() => empleadoStore.empleados)
 
 const editandoId = ref<number | null>(null)
 
+const handleBorrar = async (id: number) => {
+  if (confirm('¿Estás seguro de que deseas borrar este empleado?')) {
+    await empleadoStore.borrarEmpleado(id)
+  }
+}
+
 onMounted(() => {
   empleadoStore.cargarEmpleados()
 })
@@ -38,6 +44,7 @@ onMounted(() => {
             v-else
             :empleado="empleado"
             @editar="editandoId = empleado.id"
+            @borrar="handleBorrar(empleado.id)"
           />
         </div>
       </div>

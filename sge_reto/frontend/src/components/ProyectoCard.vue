@@ -2,7 +2,7 @@
 import type { Proyecto } from '@/types'
 
 defineProps<{ proyecto: Proyecto }>()
-const emit = defineEmits(['editar'])
+const emit = defineEmits(['editar', 'borrar'])
 
 const formatearFecha = (fechaISO: string | null) => {
   if (fechaISO === null) return '';
@@ -19,9 +19,14 @@ const formatearFecha = (fechaISO: string | null) => {
         <h5 class="card-title mb-0">
           #{{ proyecto.id }} - {{ proyecto.nombre }}
         </h5>
-        <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
-          Editar
-        </button>
+        <div class="d-flex flex-column align-items-end">
+          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0 mb-1" style="font-size: 0.75rem;">
+            Editar
+          </button>
+          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
+            Borrar
+          </button>
+        </div>
       </div>
 
       <p class="card-text text-muted">

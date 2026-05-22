@@ -9,6 +9,12 @@ const proyectos = computed(() => proyectoStore.proyectos)
 
 const editandoId = ref<number | null>(null)
 
+const handleBorrar = async (id: number) => {
+  if (confirm('¿Estás seguro de que deseas borrar este proyecto?')) {
+    await proyectoStore.borrarProyecto(id)
+  }
+}
+
 onMounted(() => {
   proyectoStore.cargarProyectos()
 })
@@ -38,6 +44,7 @@ onMounted(() => {
             v-else
             :proyecto="proyecto"
             @editar="editandoId = proyecto.id"
+            @borrar="handleBorrar(proyecto.id)"
           />
         </div>
       </div>

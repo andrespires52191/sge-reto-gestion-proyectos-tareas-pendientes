@@ -2,7 +2,7 @@
 import type { Empleado } from '@/types'
 
 const props = defineProps<{ empleado: Empleado }>()
-const emit = defineEmits(['editar'])
+const emit = defineEmits(['editar', 'borrar'])
 </script>
 
 <template>
@@ -12,9 +12,14 @@ const emit = defineEmits(['editar'])
         <h5 class="card-title mb-0">
           #{{ empleado.id }} - {{ empleado.nombre }} {{ empleado.apellidos }}
         </h5>
-        <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
-          Editar
-        </button>
+        <div class="d-flex flex-column align-items-end">
+          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0 mb-1" style="font-size: 0.75rem;">
+            Editar
+          </button>
+          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
+            Borrar
+          </button>
+        </div>
       </div>
 
       <div class="row text-muted small">

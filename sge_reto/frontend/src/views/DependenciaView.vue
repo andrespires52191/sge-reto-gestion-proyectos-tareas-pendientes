@@ -9,6 +9,12 @@ const dependencias = computed(() => dependenciaStore.dependencias)
 
 const editandoId = ref<number | null>(null)
 
+const handleBorrar = async (id: number) => {
+  if (confirm('¿Estás seguro de que deseas borrar esta dependencia?')) {
+    await dependenciaStore.borrarDependencia(id)
+  }
+}
+
 onMounted(() => {
   dependenciaStore.cargarDependencias()
 })
@@ -38,6 +44,7 @@ onMounted(() => {
             v-else
             :dependencia="dependencia"
             @editar="editandoId = dependencia.id"
+            @borrar="handleBorrar(dependencia.id)"
           />
         </div>
       </div>

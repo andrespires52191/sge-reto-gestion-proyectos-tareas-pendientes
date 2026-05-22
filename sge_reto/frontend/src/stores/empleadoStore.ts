@@ -38,11 +38,23 @@ export const useEmpleadoStore = defineStore('empleado', () => {
         }
     }
 
+    const borrarEmpleado = async (id: number) => {
+        try {
+            await api.delete(`/api/empleado/empleados/${id}/`);
+            empleados.value = empleados.value.filter(e => e.id !== id);
+            return true;
+        } catch (err) {
+            console.error('Error al borrar empleado:', err);
+            return false;
+        }
+    }
+
     return {
         empleados,
         cargando,
         error,
         cargarEmpleados,
-        actualizarEmpleado
+        actualizarEmpleado,
+        borrarEmpleado
     }
 })

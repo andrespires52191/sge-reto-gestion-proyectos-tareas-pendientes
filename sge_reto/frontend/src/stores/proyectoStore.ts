@@ -38,11 +38,23 @@ export const useProyectoStore = defineStore('proyecto', () => {
         }
     }
 
+    const borrarProyecto = async (id: number) => {
+        try {
+            await api.delete(`/api/proyecto/proyectos/${id}/`);
+            proyectos.value = proyectos.value.filter(p => p.id !== id);
+            return true;
+        } catch (err) {
+            console.error('Error al borrar proyecto:', err);
+            return false;
+        }
+    }
+
     return {
         proyectos,
         cargando,
         error,
         cargarProyectos,
-        actualizarProyecto
+        actualizarProyecto,
+        borrarProyecto
     }
 })

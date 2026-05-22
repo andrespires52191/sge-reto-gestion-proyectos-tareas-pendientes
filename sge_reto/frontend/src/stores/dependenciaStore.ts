@@ -38,12 +38,24 @@ export const useDependenciaStore = defineStore('dependencia', () => {
         }
     }
 
+    const borrarDependencia = async (id: number) => {
+        try {
+            await api.delete(`/api/tarea/dependencias/${id}/`);
+            dependencias.value = dependencias.value.filter(d => d.id !== id);
+            return true;
+        } catch (err) {
+            console.error('Error al borrar dependencia:', err);
+            return false;
+        }
+    }
+
     return {
         dependencias,
         cargando,
         error,
         cargarDependencias,
-        actualizarDependencia
+        actualizarDependencia,
+        borrarDependencia
     }
 })
 
