@@ -10,7 +10,13 @@ const empleadoStore = useEmpleadoStore()
 const editEmpleado = ref<Empleado>({ ...props.empleado })
 
 const guardar = async () => {
-  const success = await empleadoStore.actualizarEmpleado(editEmpleado.value)
+  let success = false
+  if (editEmpleado.value.id) {
+    success = await empleadoStore.actualizarEmpleado(editEmpleado.value)
+  } else {
+    success = await empleadoStore.crearEmpleado(editEmpleado.value)
+  }
+
   if (success) {
     emit('guardado')
   }
@@ -20,6 +26,9 @@ const guardar = async () => {
 <template>
   <div class="card mb-3 border-primary">
     <div class="card-body">
+      <h5 class="card-title mb-3 text-primary">
+        {{ editEmpleado.id ? 'Editando Empleado #' + editEmpleado.id : 'Nuevo Empleado' }}
+      </h5>
       <div class="row g-3">
         <div class="col-md-6">
           <label class="small text-muted">Nombre</label>

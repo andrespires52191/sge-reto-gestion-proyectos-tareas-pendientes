@@ -8,6 +8,17 @@ const proyectoStore = useProyectoStore()
 const proyectos = computed(() => proyectoStore.proyectos)
 
 const editandoId = ref<number | null>(null)
+const mostrandoCrear = ref(false)
+
+const nuevoProyectoBase = (): Partial<Proyecto> => ({
+  nombre: '',
+  descripcion: '',
+  estado: 0,
+  responsable_principal: null,
+  fecha_inicio: null,
+  fecha_fin_prevista: null,
+  tareas_asociadas: []
+})
 
 const handleBorrar = async (id: number) => {
   if (confirm('¿Estás seguro de que deseas borrar este proyecto?')) {
@@ -22,7 +33,12 @@ onMounted(() => {
 
 <template>
   <div>
-    <h1 class="mb-4">Proyectos</h1>
+    <div class="d-flex align-items-center mb-4">
+      <h1 class="mb-0">Proyectos</h1>
+      <button @click="mostrandoCrear = true" class="btn btn-success btn-sm ms-3" v-if="!mostrandoCrear">
+        + Añadir Proyecto
+      </button>
+    </div>
 
     <div v-if="proyectoStore.cargando" class="alert alert-info">Conectando con Django...</div>
     <div v-else-if="proyectoStore.error" class="alert alert-danger">
@@ -30,7 +46,14 @@ onMounted(() => {
     </div>
 
     <div v-else>
-      <div v-if="proyectos.length === 0" class="alert alert-info">No hay proyectos en la base de datos.</div>
+      <ProyectoEditCard
+        v-if="mostrandoCrear"
+        :proyecto="(nuevoProyectoBase() as Proyecto)"
+        @cancelar="mostrandoCrear = false"
+        @guardado="mostrandoCrear = false"
+      />
+
+      <div v-if="proyectos.length === 0 && !mostrandoCrear" class="alert alert-info">No hay proyectos en la base de datos.</div>
 
       <div class="row">
         <div class="col-12" v-for="proyecto in proyectos" :key="proyecto.id">

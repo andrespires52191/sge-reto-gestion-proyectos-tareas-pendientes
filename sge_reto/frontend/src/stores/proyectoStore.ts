@@ -38,6 +38,17 @@ export const useProyectoStore = defineStore('proyecto', () => {
         }
     }
 
+    const crearProyecto = async (proyecto: Partial<Proyecto>) => {
+        try {
+            const { data } = await api.post('/api/proyecto/proyectos/', proyecto);
+            proyectos.value.push(data);
+            return true;
+        } catch (err) {
+            console.error('Error al crear proyecto:', err);
+            return false;
+        }
+    }
+
     const borrarProyecto = async (id: number) => {
         try {
             await api.delete(`/api/proyecto/proyectos/${id}/`);
@@ -55,6 +66,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
         error,
         cargarProyectos,
         actualizarProyecto,
+        crearProyecto,
         borrarProyecto
     }
 })

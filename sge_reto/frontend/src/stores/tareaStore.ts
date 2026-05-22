@@ -39,6 +39,17 @@ export const useTareaStore = defineStore('tarea', () => {
         }
     }
 
+    const crearTarea = async (tarea: Partial<Tarea>) => {
+        try {
+            const { data } = await api.post('/api/tarea/tareas/', tarea);
+            tareas.value.push(data);
+            return true;
+        } catch (err) {
+            console.error('Error al crear tarea:', err);
+            return false;
+        }
+    }
+
     const borrarTarea = async (id: number) => {
         try {
             await api.delete(`/api/tarea/tareas/${id}/`);
@@ -56,6 +67,7 @@ export const useTareaStore = defineStore('tarea', () => {
         error,
         cargarTareas,
         actualizarTarea,
+        crearTarea,
         borrarTarea
     }
 })

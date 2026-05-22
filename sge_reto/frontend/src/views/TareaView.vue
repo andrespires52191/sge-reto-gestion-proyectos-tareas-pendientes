@@ -8,6 +8,18 @@ const tareaStore = useTareaStore()
 const tareas = computed(() => tareaStore.tareas)
 
 const editandoId = ref<number | null>(null)
+const mostrandoCrear = ref(false)
+
+const nuevaTareaBase = (): Partial<Tarea> => ({
+  titulo: '',
+  descripcion: '',
+  prioridad: 'media',
+  estado: 0,
+  proyecto_asociado: null,
+  responsable_asignado: null,
+  fecha_inicio: null,
+  fecha_fin_prevista: null
+})
 
 const handleBorrar = async (id: number) => {
   if (confirm('¿Estás seguro de que deseas borrar esta tarea?')) {
@@ -22,7 +34,12 @@ onMounted(() => {
 
 <template>
   <div>
-    <h1 class="mb-4">Tareas</h1>
+    <div class="d-flex align-items-center mb-4">
+      <h1 class="mb-0">Tareas</h1>
+      <button @click="mostrandoCrear = true" class="btn btn-success btn-sm ms-3" v-if="!mostrandoCrear">
+        + Añadir Tarea
+      </button>
+    </div>
 
     <div v-if="tareaStore.cargando" class="alert alert-info">Conectando con Django...</div>
     <div v-else-if="tareaStore.error" class="alert alert-danger">
@@ -30,7 +47,14 @@ onMounted(() => {
     </div>
 
     <div v-else>
-      <div v-if="tareas.length === 0" class="alert alert-info">No hay tareas en la base de datos.</div>
+      <TareaEditCard
+        v-if="mostrandoCrear"
+        :tarea="(nuevaTareaBase() as Tarea)"
+        @cancelar="mostrandoCrear = false"
+        @guardado="mostrandoCrear = false"
+      />
+
+      <div v-if="tareas.length === 0 && !mostrandoCrear" class="alert alert-info">No hay tareas en la base de datos.</div>
 
       <div class="row">
         <div class="col-12" v-for="tarea in tareas" :key="tarea.id">

@@ -7,11 +7,16 @@ const props = defineProps<{ tarea: Tarea }>()
 const emit = defineEmits(['cancelar', 'guardado'])
 
 const tareaStore = useTareaStore()
-// Creamos una copia local para editar sin modificar el store global inmediatamente
 const editTask = ref<Tarea>({ ...props.tarea })
 
 const guardar = async () => {
-  const success = await tareaStore.actualizarTarea(editTask.value)
+  let success = false
+  if (editTask.value.id) {
+    success = await tareaStore.actualizarTarea(editTask.value)
+  } else {
+    success = await tareaStore.crearTarea(editTask.value)
+  }
+
   if (success) {
     emit('guardado')
   }
@@ -22,9 +27,9 @@ const guardar = async () => {
   <div class="card mb-3 border-primary">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
-        <div class="flex-grow-1 me-2">
-          <input v-model="editTask.titulo" class="form-control form-control-sm font-weight-bold" placeholder="Título de la tarea" />
-        </div>
+        <h5 class="card-title mb-0 text-primary">
+          {{ editTask.id ? 'Editando Tarea #' + editTask.id : 'Nueva Tarea' }}
+        </h5>
         <select v-model="editTask.prioridad" class="form-select form-select-sm w-auto">
           <option value="baja">baja</option>
           <option value="media">media</option>

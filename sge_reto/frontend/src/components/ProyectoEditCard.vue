@@ -10,7 +10,13 @@ const proyectoStore = useProyectoStore()
 const editProyecto = ref<Proyecto>({ ...props.proyecto })
 
 const guardar = async () => {
-  const success = await proyectoStore.actualizarProyecto(editProyecto.value)
+  let success = false
+  if (editProyecto.value.id) {
+    success = await proyectoStore.actualizarProyecto(editProyecto.value)
+  } else {
+    success = await proyectoStore.crearProyecto(editProyecto.value)
+  }
+
   if (success) {
     emit('guardado')
   }
@@ -20,6 +26,10 @@ const guardar = async () => {
 <template>
   <div class="card mb-3 border-primary">
     <div class="card-body">
+      <h5 class="card-title mb-3 text-primary">
+        {{ editProyecto.id ? 'Editando Proyecto #' + editProyecto.id : 'Nuevo Proyecto' }}
+      </h5>
+
       <div class="mb-3">
         <label class="small text-muted">Nombre del Proyecto</label>
         <input v-model="editProyecto.nombre" class="form-control form-control-sm font-weight-bold" />

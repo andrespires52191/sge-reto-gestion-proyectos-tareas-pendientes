@@ -38,6 +38,17 @@ export const useDependenciaStore = defineStore('dependencia', () => {
         }
     }
 
+    const crearDependencia = async (dependencia: Partial<Dependencia>) => {
+        try {
+            const { data } = await api.post('/api/tarea/dependencias/', dependencia);
+            dependencias.value.push(data);
+            return true;
+        } catch (err) {
+            console.error('Error al crear dependencia:', err);
+            return false;
+        }
+    }
+
     const borrarDependencia = async (id: number) => {
         try {
             await api.delete(`/api/tarea/dependencias/${id}/`);
@@ -55,6 +66,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
         error,
         cargarDependencias,
         actualizarDependencia,
+        crearDependencia,
         borrarDependencia
     }
 })

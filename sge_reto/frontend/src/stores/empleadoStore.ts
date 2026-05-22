@@ -38,6 +38,17 @@ export const useEmpleadoStore = defineStore('empleado', () => {
         }
     }
 
+    const crearEmpleado = async (empleado: Partial<Empleado>) => {
+        try {
+            const { data } = await api.post('/api/empleado/empleados/', empleado);
+            empleados.value.push(data);
+            return true;
+        } catch (err) {
+            console.error('Error al crear empleado:', err);
+            return false;
+        }
+    }
+
     const borrarEmpleado = async (id: number) => {
         try {
             await api.delete(`/api/empleado/empleados/${id}/`);
@@ -55,6 +66,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
         error,
         cargarEmpleados,
         actualizarEmpleado,
+        crearEmpleado,
         borrarEmpleado
     }
 })

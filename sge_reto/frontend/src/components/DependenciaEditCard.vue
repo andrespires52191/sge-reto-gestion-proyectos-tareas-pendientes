@@ -10,7 +10,13 @@ const dependenciaStore = useDependenciaStore()
 const editDependencia = ref<Dependencia>({ ...props.dependencia })
 
 const guardar = async () => {
-  const success = await dependenciaStore.actualizarDependencia(editDependencia.value)
+  let success = false
+  if (editDependencia.value.id) {
+    success = await dependenciaStore.actualizarDependencia(editDependencia.value)
+  } else {
+    success = await dependenciaStore.crearDependencia(editDependencia.value)
+  }
+
   if (success) {
     emit('guardado')
   }
@@ -22,7 +28,7 @@ const guardar = async () => {
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h5 class="card-title mb-0 text-primary">
-          Editando Dependencia #{{ dependencia.id }}
+          {{ editDependencia.id ? 'Editando Dependencia #' + editDependencia.id : 'Nueva Dependencia' }}
         </h5>
       </div>
 
