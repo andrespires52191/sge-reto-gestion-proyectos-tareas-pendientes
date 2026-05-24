@@ -33,6 +33,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
             }
             return true;
         } catch (err) {
+            alert('Error al actualizar proyecto.');
             console.error('Error al actualizar proyecto:', err);
             return false;
         }
@@ -44,6 +45,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
             proyectos.value.push(data);
             return true;
         } catch (err) {
+            alert('Error al crear proyecto.');
             console.error('Error al crear proyecto:', err);
             return false;
         }
@@ -55,6 +57,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
             proyectos.value = proyectos.value.filter(p => p.id !== id);
             return true;
         } catch (err) {
+            alert('Error al borrar proyecto.');
             console.error('Error al borrar proyecto:', err);
             return false;
         }

@@ -34,6 +34,7 @@ export const useTareaStore = defineStore('tarea', () => {
             }
             return true;
         } catch (err) {
+            alert('Error al actualizar tarea.');
             console.error('Error al actualizar tarea:', err);
             return false;
         }
@@ -45,6 +46,7 @@ export const useTareaStore = defineStore('tarea', () => {
             tareas.value.push(data);
             return true;
         } catch (err) {
+            alert('Error al crear tarea.');
             console.error('Error al crear tarea:', err);
             return false;
         }
@@ -56,6 +58,7 @@ export const useTareaStore = defineStore('tarea', () => {
             tareas.value = tareas.value.filter(t => t.id !== id);
             return true;
         } catch (err) {
+            alert('Error al borrar tarea.');
             console.error('Error al borrar tarea:', err);
             return false;
         }

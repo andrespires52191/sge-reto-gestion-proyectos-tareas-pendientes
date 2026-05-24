@@ -33,6 +33,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
             }
             return true;
         } catch (err) {
+            alert('Error al actualizar dependencia.');
             console.error('Error al actualizar dependencia:', err);
             return false;
         }
@@ -44,6 +45,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
             dependencias.value.push(data);
             return true;
         } catch (err) {
+            alert('Error al crear dependencia.');
             console.error('Error al crear dependencia:', err);
             return false;
         }
@@ -55,6 +57,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
             dependencias.value = dependencias.value.filter(d => d.id !== id);
             return true;
         } catch (err) {
+            alert('Error al borrar dependencia.');
             console.error('Error al borrar dependencia:', err);
             return false;
         }

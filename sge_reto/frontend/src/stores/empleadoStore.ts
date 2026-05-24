@@ -33,6 +33,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
             }
             return true;
         } catch (err) {
+            alert('Error al actualizar empleado.');
             console.error('Error al actualizar empleado:', err);
             return false;
         }
@@ -44,6 +45,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
             empleados.value.push(data);
             return true;
         } catch (err) {
+            alert('Error al crear empleado.');
             console.error('Error al crear empleado:', err);
             return false;
         }
@@ -55,6 +57,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
             empleados.value = empleados.value.filter(e => e.id !== id);
             return true;
         } catch (err) {
+            alert('Error al borrar empleado.');
             console.error('Error al borrar empleado:', err);
             return false;
         }
