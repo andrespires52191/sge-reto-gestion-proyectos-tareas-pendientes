@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Proyecto } from '@/types'
-import { useProyectoStore } from '@/stores/proyectoStore'
+import {ref} from 'vue'
+import type {Proyecto} from '@/types'
+import {useProyectoStore} from '@/stores/proyectoStore'
 
 const props = defineProps<{ proyecto: Proyecto }>()
 const emit = defineEmits(['cancelar', 'guardado'])
 
 const proyectoStore = useProyectoStore()
-const editProyecto = ref<Proyecto>({ ...props.proyecto })
+const editProyecto = ref<Proyecto>({...props.proyecto})
 
 const guardar = async () => {
   let success = false
@@ -24,7 +24,7 @@ const guardar = async () => {
 </script>
 
 <template>
-  <div class="card mb-3 border-primary">
+  <div class="card mb-3 border-primary bg-light-subtle shadow">
     <div class="card-body">
       <h5 class="card-title mb-3 text-primary">
         {{ editProyecto.id ? 'Editando Proyecto #' + editProyecto.id : 'Nuevo Proyecto' }}
@@ -32,7 +32,7 @@ const guardar = async () => {
 
       <div class="mb-3">
         <label class="small text-muted">Nombre del Proyecto</label>
-        <input v-model="editProyecto.nombre" class="form-control form-control-sm font-weight-bold" />
+        <input v-model="editProyecto.nombre" class="form-control form-control-sm font-weight-bold"/>
       </div>
 
       <div class="mb-3">
@@ -43,7 +43,8 @@ const guardar = async () => {
       <div class="row g-3 text-muted small">
         <div class="col-md-3">
           <label>Estado (%)</label>
-          <input v-model.number="editProyecto.estado" type="number" min="0" max="100" class="form-control form-control-sm" />
+          <input v-model.number="editProyecto.estado" type="number" min="0" max="100"
+                 class="form-control form-control-sm"/>
         </div>
         <div class="col-md-3">
           <label>Responsable (ID)</label>
@@ -51,11 +52,11 @@ const guardar = async () => {
         </div>
         <div class="col-md-3">
           <label>Inicio</label>
-          <input v-model="editProyecto.fecha_inicio" type="datetime-local" class="form-control form-control-sm" />
+          <input v-model="editProyecto.fecha_inicio" type="datetime-local" class="form-control form-control-sm"/>
         </div>
         <div class="col-md-3">
           <label>Fin Previsto</label>
-          <input v-model="editProyecto.fecha_fin_prevista" type="datetime-local" class="form-control form-control-sm" />
+          <input v-model="editProyecto.fecha_fin_prevista" type="datetime-local" class="form-control form-control-sm"/>
         </div>
       </div>
 
@@ -68,6 +69,4 @@ const guardar = async () => {
 </template>
 
 <style scoped>
-label { font-weight: bold; margin-bottom: 2px; display: block; }
 </style>
-

@@ -3,6 +3,7 @@ import {computed, onMounted, ref} from 'vue'
 import {useTareaStore} from '@/stores/tareaStore'
 import TareaCard from '@/components/TareaCard.vue'
 import TareaEditCard from '@/components/TareaEditCard.vue'
+import type {Tarea} from "@/types";
 
 const tareaStore = useTareaStore()
 const tareas = computed(() => tareaStore.tareas)
@@ -36,7 +37,7 @@ onMounted(() => {
   <div>
     <div class="d-flex align-items-center mb-4">
       <h1 class="mb-0">Tareas</h1>
-      <button @click="mostrandoCrear = true" class="btn btn-success btn-sm ms-3" v-if="!mostrandoCrear">
+      <button @click="mostrandoCrear = true" class="btn btn-success btn-sm ms-auto" v-if="!mostrandoCrear">
         + Añadir Tarea
       </button>
     </div>
@@ -48,27 +49,28 @@ onMounted(() => {
 
     <div v-else>
       <TareaEditCard
-        v-if="mostrandoCrear"
-        :tarea="(nuevaTareaBase() as Tarea)"
-        @cancelar="mostrandoCrear = false"
-        @guardado="mostrandoCrear = false"
+          v-if="mostrandoCrear"
+          :tarea="(nuevaTareaBase() as Tarea)"
+          @cancelar="mostrandoCrear = false"
+          @guardado="mostrandoCrear = false"
       />
 
-      <div v-if="tareas.length === 0 && !mostrandoCrear" class="alert alert-info">No hay tareas en la base de datos.</div>
+      <div v-if="tareas.length === 0 && !mostrandoCrear" class="alert alert-info">No hay tareas en la base de datos.
+      </div>
 
       <div class="row">
         <div class="col-12" v-for="tarea in tareas" :key="tarea.id">
           <TareaEditCard
-            v-if="editandoId === tarea.id"
-            :tarea="tarea"
-            @cancelar="editandoId = null"
-            @guardado="editandoId = null"
+              v-if="editandoId === tarea.id"
+              :tarea="tarea"
+              @cancelar="editandoId = null"
+              @guardado="editandoId = null"
           />
           <TareaCard
-            v-else
-            :tarea="tarea"
-            @editar="editandoId = tarea.id"
-            @borrar="handleBorrar(tarea.id)"
+              v-else
+              :tarea="tarea"
+              @editar="editandoId = tarea.id"
+              @borrar="handleBorrar(tarea.id)"
           />
         </div>
       </div>

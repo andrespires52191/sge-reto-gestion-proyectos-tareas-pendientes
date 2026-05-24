@@ -9,9 +9,12 @@ const authStore = useAuthStore();
   <div class="d-flex flex-column vh-100">
     <nav class="navbar bg-light border pb-0">
       <div class="container-fluid d-flex align-items-center justify-content-start">
-        <RouterLink to="/" class="navbar-brand">Gestión de Proyectos</RouterLink>
-        <ul class="nav nav-tabs border-0">
-          <li v-if="authStore.isAuthenticated" class="nav-item">
+        <BotonLogout v-if="authStore.isAuthenticated" class="ms-auto position-absolute top-0 end-0 m-3"/>
+        <RouterLink to="/" class="navbar-brand fw-semibold text-secondary-emphasis">
+          Gestor de Tareas
+        </RouterLink>
+        <ul class="nav nav-tabs border-0 col-12 col-lg-8">
+          <li v-if="authStore.isAuthenticated" class="nav-item d-none d-sm-inline">
             <RouterLink to="/" class="nav-link" exact-active-class="active">Inicio</RouterLink>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
@@ -26,11 +29,13 @@ const authStore = useAuthStore();
           <li v-if="authStore.isAuthenticated" class="nav-item">
             <RouterLink to="/dependencia" class="nav-link" exact-active-class="active">Dependencias</RouterLink>
           </li>
+          <li v-if="!authStore.isAuthenticated" class="nav-item d-none d-sm-inline">
+            <RouterLink to="/login" class="nav-link" exact-active-class="active">Login</RouterLink>
+          </li>
         </ul>
-        <BotonLogout v-if="authStore.isAuthenticated" class="ms-auto"/>
       </div>
     </nav>
-    <div class="flex-grow-1 p-3">
+    <div class="flex-grow-1 p-3 col-xxl-8 col-xl-10 m-auto">
       <RouterView/>
     </div>
   </div>

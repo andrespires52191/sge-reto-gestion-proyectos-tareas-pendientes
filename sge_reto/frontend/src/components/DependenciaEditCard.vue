@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Dependencia } from '@/types'
-import { useDependenciaStore } from '@/stores/dependenciaStore'
+import {ref} from 'vue'
+import type {Dependencia} from '@/types'
+import {useDependenciaStore} from '@/stores/dependenciaStore'
 
 const props = defineProps<{ dependencia: Dependencia }>()
 const emit = defineEmits(['cancelar', 'guardado'])
 
 const dependenciaStore = useDependenciaStore()
-const editDependencia = ref<Dependencia>({ ...props.dependencia })
+const editDependencia = ref<Dependencia>({...props.dependencia})
 
 const guardar = async () => {
   let success = false
@@ -24,7 +24,7 @@ const guardar = async () => {
 </script>
 
 <template>
-  <div class="card mb-3 border-primary">
+  <div class="card mb-3 border-primary bg-light-subtle shadow">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h5 class="card-title mb-0 text-primary">
@@ -34,20 +34,20 @@ const guardar = async () => {
 
       <div class="row g-3 small">
         <div class="col-md-4">
+          <label class="text-muted">Tarea Origen (ID)</label>
+          <input v-model.number="editDependencia.tarea_origen" type="number" class="form-control form-control-sm"/>
+        </div>
+        <div class="col-md-4">
+          <label class="text-muted">Tarea Dependiente (ID)</label>
+          <input v-model.number="editDependencia.tarea_dependiente" type="number" class="form-control form-control-sm"/>
+        </div>
+        <div class="col-md-4">
           <label class="text-muted">Tipo de dependencia</label>
           <select v-model="editDependencia.tipo_dependencia" class="form-select form-select-sm">
             <option value="FIN_INI">FIN_INI (Fin a Inicio)</option>
             <option value="INI_INI">INI_INI (Inicio a Inicio)</option>
             <option value="FIN_FIN">FIN_FIN (Fin a Fin)</option>
           </select>
-        </div>
-        <div class="col-md-4">
-          <label class="text-muted">Tarea Origen (ID)</label>
-          <input v-model.number="editDependencia.tarea_origen" type="number" class="form-control form-control-sm" />
-        </div>
-        <div class="col-md-4">
-          <label class="text-muted">Tarea Dependiente (ID)</label>
-          <input v-model.number="editDependencia.tarea_dependiente" type="number" class="form-control form-control-sm" />
         </div>
       </div>
 
@@ -60,6 +60,4 @@ const guardar = async () => {
 </template>
 
 <style scoped>
-label { font-weight: bold; margin-bottom: 2px; display: block; }
 </style>
-

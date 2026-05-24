@@ -3,6 +3,7 @@ import {computed, onMounted, ref} from 'vue'
 import {useEmpleadoStore} from '@/stores/empleadoStore'
 import EmpleadoCard from '@/components/EmpleadoCard.vue'
 import EmpleadoEditCard from '@/components/EmpleadoEditCard.vue'
+import type {Empleado} from "@/types";
 
 const empleadoStore = useEmpleadoStore()
 const empleados = computed(() => empleadoStore.empleados)
@@ -35,7 +36,7 @@ onMounted(() => {
   <div>
     <div class="d-flex align-items-center mb-4">
       <h1 class="mb-0">Empleados</h1>
-      <button @click="mostrandoCrear = true" class="btn btn-success btn-sm ms-3" v-if="!mostrandoCrear">
+      <button @click="mostrandoCrear = true" class="btn btn-success btn-sm ms-auto" v-if="!mostrandoCrear">
         + Añadir Empleado
       </button>
     </div>
@@ -47,27 +48,29 @@ onMounted(() => {
 
     <div v-else>
       <EmpleadoEditCard
-        v-if="mostrandoCrear"
-        :empleado="(nuevoEmpleadoBase() as Empleado)"
-        @cancelar="mostrandoCrear = false"
-        @guardado="mostrandoCrear = false"
+          v-if="mostrandoCrear"
+          :empleado="(nuevoEmpleadoBase() as Empleado)"
+          @cancelar="mostrandoCrear = false"
+          @guardado="mostrandoCrear = false"
       />
 
-      <div v-if="empleados.length === 0 && !mostrandoCrear" class="alert alert-info">No hay empleados en la base de datos.</div>
+      <div v-if="empleados.length === 0 && !mostrandoCrear" class="alert alert-info">
+        No hay empleados en la base de datos.
+      </div>
 
       <div class="row">
         <div class="col-12" v-for="empleado in empleados" :key="empleado.id">
           <EmpleadoEditCard
-            v-if="editandoId === empleado.id"
-            :empleado="empleado"
-            @cancelar="editandoId = null"
-            @guardado="editandoId = null"
+              v-if="editandoId === empleado.id"
+              :empleado="empleado"
+              @cancelar="editandoId = null"
+              @guardado="editandoId = null"
           />
           <EmpleadoCard
-            v-else
-            :empleado="empleado"
-            @editar="editandoId = empleado.id"
-            @borrar="handleBorrar(empleado.id)"
+              v-else
+              :empleado="empleado"
+              @editar="editandoId = empleado.id"
+              @borrar="handleBorrar(empleado.id)"
           />
         </div>
       </div>

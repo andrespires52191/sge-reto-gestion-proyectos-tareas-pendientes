@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Proyecto } from '@/types'
+import type {Proyecto} from '@/types'
 
 defineProps<{ proyecto: Proyecto }>()
 const emit = defineEmits(['editar', 'borrar'])
@@ -13,18 +13,18 @@ const formatearFecha = (fechaISO: string | null) => {
 </script>
 
 <template>
-  <div class="card mb-3">
+  <div class="card mb-3 border-secondary-subtle bg-light-subtle shadow">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h5 class="card-title mb-0">
           #{{ proyecto.id }} - {{ proyecto.nombre }}
         </h5>
-        <div class="d-flex flex-column align-items-end">
-          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0 mb-1" style="font-size: 0.75rem;">
-            Editar
+        <div>
+          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm py-0 mx-1">
+            <i class="bi bi-pencil"></i>
           </button>
-          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
-            Borrar
+          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm py-0 mx-1">
+            <i class="bi bi-trash"></i>
           </button>
         </div>
       </div>
@@ -38,18 +38,18 @@ const formatearFecha = (fechaISO: string | null) => {
           <strong>Estado:</strong> {{ proyecto.estado }}
         </div>
         <div class="col-md-3">
-          <strong>Asignada a:</strong> {{ proyecto.responsable_principal || 'Sin responsable' }}
+          <strong>Asignado a:</strong> {{ proyecto.responsable_principal }}
         </div>
         <div class="col-md-3">
-          <strong>Inicio:</strong> {{ formatearFecha(proyecto.fecha_inicio) }}
+          <strong>Inicio:</strong> {{ formatearFecha(proyecto.fecha_inicio) || '-' }}
         </div>
         <div class="col-md-3">
-          <strong>Fin Previsto:</strong> {{ formatearFecha(proyecto.fecha_fin_prevista) }}
+          <strong>Fin Previsto:</strong> {{ formatearFecha(proyecto.fecha_fin_prevista) || '-' }}
         </div>
       </div>
 
-      <div>
-        Tareas asociadas
+      <div class="text-muted small">
+        <strong>Tareas asociadas:</strong>
         <ul>
           <li v-for="(tarea, index) in proyecto.tareas_asociadas" :key="index">
             {{ tarea }}

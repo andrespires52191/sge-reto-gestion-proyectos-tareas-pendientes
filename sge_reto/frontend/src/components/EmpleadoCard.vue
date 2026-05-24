@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { Empleado } from '@/types'
+import type {Empleado} from '@/types'
 
 const props = defineProps<{ empleado: Empleado }>()
 const emit = defineEmits(['editar', 'borrar'])
 </script>
 
 <template>
-  <div class="card mb-3">
+  <div class="card mb-3 border-secondary-subtle bg-light-subtle shadow">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h5 class="card-title mb-0">
           #{{ empleado.id }} - {{ empleado.nombre }} {{ empleado.apellidos }}
         </h5>
-        <div class="d-flex flex-column align-items-end">
-          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0 mb-1" style="font-size: 0.75rem;">
-            Editar
+        <div>
+          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm py-0 mx-1">
+            <i class="bi bi-pencil"></i>
           </button>
-          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
-            Borrar
+          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm py-0 mx-1">
+            <i class="bi bi-trash"></i>
           </button>
         </div>
       </div>
@@ -30,7 +30,7 @@ const emit = defineEmits(['editar', 'borrar'])
           <strong>Rol:</strong> {{ empleado.rol }}
         </div>
         <div class="col-md-3">
-          <strong>Teléfono:</strong> {{ empleado.telefono || 'Sin telefono' }}
+          <strong>Teléfono:</strong> {{ empleado.telefono || '-' }}
         </div>
         <div class="col-md-3">
           <strong>Email:</strong> {{ empleado.email }}
@@ -48,4 +48,3 @@ const emit = defineEmits(['editar', 'borrar'])
     </div>
   </div>
 </template>
-

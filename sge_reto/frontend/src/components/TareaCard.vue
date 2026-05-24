@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Tarea } from '@/types'
+import type {Tarea} from '@/types'
 
 defineProps<{ tarea: Tarea }>()
 const emit = defineEmits(['editar', 'borrar'])
@@ -13,23 +13,18 @@ const formatearFecha = (fechaISO: string | null) => {
 </script>
 
 <template>
-  <div class="card mb-3">
+  <div class="card mb-3 border-secondary-subtle bg-light-subtle shadow">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h5 class="card-title mb-0">
           #{{ tarea.id }} - {{ tarea.titulo }}
         </h5>
-        <div class="d-flex flex-column align-items-end">
-          <div class="mb-1">
-            <span class="badge bg-secondary me-2">
-              {{ tarea.prioridad }}
-            </span>
-            <button @click="emit('editar')" class="btn btn-outline-primary btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
-              Editar
-            </button>
-          </div>
-          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm pt-0 pb-0" style="font-size: 0.75rem;">
-            Borrar
+        <div>
+          <button @click="emit('editar')" class="btn btn-outline-primary btn-sm py-0 mx-1">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button @click="emit('borrar')" class="btn btn-outline-danger btn-sm py-0 mx-1">
+            <i class="bi bi-trash"></i>
           </button>
         </div>
       </div>
@@ -37,12 +32,17 @@ const formatearFecha = (fechaISO: string | null) => {
       <p class="card-text text-muted">
         {{ tarea.descripcion }}
       </p>
-      <div>
-        <strong>Proyecto:</strong> {{ tarea.proyecto_asociado || 'Sin asignar' }}
+      <div class="row text-muted small">
+        <div class="col-md-6">
+          <strong>Proyecto:</strong> {{ tarea.proyecto_asociado }}
+        </div>
+        <div class="col-md-4">
+          <strong>Asignada a:</strong> {{ tarea.responsable_asignado || '-' }}
+        </div>
       </div>
       <div class="row text-muted small">
         <div class="col-md-3">
-          <strong>Asignada a:</strong> {{ tarea.responsable_asignado || 'Sin asignar' }}
+          <strong>Prioridad:</strong> {{ tarea.prioridad }}
         </div>
         <div class="col-md-3">
           <strong>Estado:</strong> {{ tarea.estado }}&percnt;
@@ -57,4 +57,3 @@ const formatearFecha = (fechaISO: string | null) => {
     </div>
   </div>
 </template>
-
