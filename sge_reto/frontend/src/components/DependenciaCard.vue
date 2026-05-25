@@ -10,7 +10,8 @@ const emit = defineEmits(['editar', 'borrar'])
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h5 class="card-title mb-0">
-          Dependencia <span class="text-muted small">#{{ dependencia.id }}</span>
+          <!-- mismo proyecto para ambas -->
+          [{{ dependencia.tarea_origen_lectura.proyecto_asociado_lectura }}] Dependencia <span class="text-muted small">#{{ dependencia.id }}</span>
         </h5>
         <div>
           <button @click="emit('editar')" class="btn btn-outline-primary btn-sm py-0 mx-1">
