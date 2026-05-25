@@ -26,7 +26,7 @@ const guardar = async () => {
 <template>
   <div class="card mb-3 border-primary bg-light-subtle shadow">
     <div class="card-body">
-      <h5 class="card-title mb-0 text-primary">
+      <h5 class="card-title mb-2 text-primary">
         {{ editTarea.id ? 'Editando Tarea #' + editTarea.id : 'Nueva Tarea' }}
       </h5>
 
