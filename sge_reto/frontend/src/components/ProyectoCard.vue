@@ -16,9 +16,10 @@ const formatearFecha = (fechaISO: string | null) => {
 </script>
 
 <template>
-  <div class="card mb-3 border-secondary-subtle bg-light-subtle shadow" @click="expandido = !expandido">
+  <div class="card mb-3 border-secondary-subtle bg-light-subtle shadow">
     <div class="card-body">
-      <div class="d-flex justify-content-between align-items-start">
+      <div @click="expandido = !expandido"
+           class="d-flex justify-content-between align-items-start">
         <h5 class="card-title mb-0">
           #{{ proyecto.id }} - {{ proyecto.nombre }}
           <i class="bi ms-2" :class="expandido ? 'bi-chevron-up' : 'bi-chevron-down'"></i>

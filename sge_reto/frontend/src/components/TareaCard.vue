@@ -17,13 +17,13 @@ const formatearFecha = (fechaISO: string | null) => {
 
 <template>
   <div class="card mb-3 bg-light-subtle shadow"
-       @click="expandido = !expandido"
        :class="{
         'border-success': tarea.estado === 100,
         'border-secondary-subtle ': tarea.estado !== 100,
       }">
     <div class="card-body">
-      <div class="d-flex justify-content-between align-items-start">
+      <div @click="expandido = !expandido"
+          class="d-flex justify-content-between align-items-start">
         <h5 class="card-title mb-0">
           {{ tarea.titulo }} <span class="text-muted small">#{{ tarea.id }}</span>
           <i class="bi ms-2" :class="expandido ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
