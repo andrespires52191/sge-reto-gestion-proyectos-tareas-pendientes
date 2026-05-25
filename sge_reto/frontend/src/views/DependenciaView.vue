@@ -37,7 +37,7 @@ onMounted(() => {
       </button>
     </div>
 
-    <div v-if="dependenciaStore.cargando" class="alert alert-info">Conectando con Django...</div>
+    <div v-if="dependenciaStore.cargando" class="alert alert-info">Cargando...</div>
     <div v-else-if="dependenciaStore.error" class="alert alert-danger">
       <strong>Error:</strong> {{ dependenciaStore.error }}
     </div>

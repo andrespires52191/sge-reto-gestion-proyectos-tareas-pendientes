@@ -44,9 +44,9 @@ const guardar = async () => {
         <div class="col-md-4">
           <label class="text-muted">Tipo de dependencia</label>
           <select v-model="editDependencia.tipo_dependencia" class="form-select form-select-sm">
-            <option value="FIN_INI">FIN_INI (Fin a Inicio)</option>
-            <option value="INI_INI">INI_INI (Inicio a Inicio)</option>
-            <option value="FIN_FIN">FIN_FIN (Fin a Fin)</option>
+            <option value="FIN_INI">Fin → Inicio</option>
+            <option value="INI_INI">Inicio → Inicio</option>
+            <option value="FIN_FIN">Fin → Fin</option>
           </select>
         </div>
       </div>

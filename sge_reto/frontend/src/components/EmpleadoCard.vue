@@ -37,10 +37,11 @@ const emit = defineEmits(['editar', 'borrar'])
         </div>
       </div>
 
-      <div>
-        Tareas asignadas:
-        <ul>
-          <li v-for="(tarea, index) in empleado.tareas_asignadas" :key="index">
+      <div class="text-muted small">
+        <strong>Tareas asignadas:</strong>
+        <span v-if="!empleado.tareas_asignadas?.length"> -</span>
+        <ul v-else class="list-group">
+          <li v-for="(tarea, index) in empleado.tareas_asignadas" :key="index" class="list-group-item">
             {{ tarea }}
           </li>
         </ul>

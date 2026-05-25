@@ -12,6 +12,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
     const cargarProyectos = async () => {
         try {
             const {data} = await api.get('/api/proyecto/proyectos/');
+            data.sort((a: Proyecto, b: Proyecto) => a.id - b.id)
             proyectos.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -26,7 +27,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
     const actualizarProyecto = async (proyecto: Proyecto) => {
         try {
             const url = `/api/proyecto/proyectos/${proyecto.id}/`;
-            const { data } = await api.patch(url, proyecto);
+            const {data} = await api.patch(url, proyecto);
             const index = proyectos.value.findIndex(p => p.id === proyecto.id);
             if (index !== -1) {
                 proyectos.value[index] = data;
@@ -41,7 +42,7 @@ export const useProyectoStore = defineStore('proyecto', () => {
 
     const crearProyecto = async (proyecto: Partial<Proyecto>) => {
         try {
-            const { data } = await api.post('/api/proyecto/proyectos/', proyecto);
+            const {data} = await api.post('/api/proyecto/proyectos/', proyecto);
             proyectos.value.push(data);
             return true;
         } catch (err) {

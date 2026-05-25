@@ -11,7 +11,8 @@ export const useTareaStore = defineStore('tarea', () => {
 
     const cargarTareas = async () => {
         try {
-            const { data } = await api.get('/api/tarea/tareas/');
+            const {data} = await api.get('/api/tarea/tareas/');
+            data.sort((a: Tarea, b: Tarea) => a.id - b.id)
             tareas.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -27,7 +28,7 @@ export const useTareaStore = defineStore('tarea', () => {
         try {
             // Aseguramos que la URL termine en / para evitar redirecciones de Django
             const url = `/api/tarea/tareas/${tarea.id}/`;
-            const { data } = await api.patch(url, tarea);
+            const {data} = await api.patch(url, tarea);
             const index = tareas.value.findIndex(t => t.id === tarea.id);
             if (index !== -1) {
                 tareas.value[index] = data;
@@ -42,7 +43,7 @@ export const useTareaStore = defineStore('tarea', () => {
 
     const crearTarea = async (tarea: Partial<Tarea>) => {
         try {
-            const { data } = await api.post('/api/tarea/tareas/', tarea);
+            const {data} = await api.post('/api/tarea/tareas/', tarea);
             tareas.value.push(data);
             return true;
         } catch (err) {

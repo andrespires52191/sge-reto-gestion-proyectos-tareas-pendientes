@@ -58,20 +58,20 @@ class Tarea(models.Model):
 class Dependencia(models.Model):
     tarea_origen = models.ForeignKey(
         Tarea,
-        related_name='tareas_antecesoras',  # tarea.tareas_antecesoras.all()
+        related_name='deps_antecesoras',  # tarea.deps_antecesoras.all()
         on_delete=models.CASCADE
     )
     tarea_dependiente = models.ForeignKey(
         Tarea,
-        related_name='tareas_sucesoras',  # tarea.tareas_sucesoras.all()
+        related_name='deps_sucesoras',  # tarea.deps_sucesoras.all()
         on_delete=models.CASCADE
     )
     tipo_dependencia = models.CharField(
         max_length=50,
         choices=(
-            ("FIN_INI", "Dependiente empieza cuando termina origen"),
-            ("INI_INI", "Dependiente empieza cuando empieza origen"),
-            ("FIN_FIN", "Dependiente termina cuando termina origen"),
+            ("FIN_INI", "Fin → Inicio"),
+            ("INI_INI", "Inicio → Inicio"),
+            ("FIN_FIN", "Fin → Fin"),
         )
     )
 

@@ -11,7 +11,8 @@ export const useDependenciaStore = defineStore('dependencia', () => {
 
     const cargarDependencias = async () => {
         try {
-            const { data } = await api.get('/api/tarea/dependencias/');
+            const {data} = await api.get('/api/tarea/dependencias/');
+            data.sort((a: Dependencia, b: Dependencia) => a.id - b.id)
             dependencias.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -26,7 +27,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
     const actualizarDependencia = async (dependencia: Dependencia) => {
         try {
             const url = `/api/tarea/dependencias/${dependencia.id}/`;
-            const { data } = await api.patch(url, dependencia);
+            const {data} = await api.patch(url, dependencia);
             const index = dependencias.value.findIndex(d => d.id === dependencia.id);
             if (index !== -1) {
                 dependencias.value[index] = data;
@@ -41,7 +42,7 @@ export const useDependenciaStore = defineStore('dependencia', () => {
 
     const crearDependencia = async (dependencia: Partial<Dependencia>) => {
         try {
-            const { data } = await api.post('/api/tarea/dependencias/', dependencia);
+            const {data} = await api.post('/api/tarea/dependencias/', dependencia);
             dependencias.value.push(data);
             return true;
         } catch (err) {

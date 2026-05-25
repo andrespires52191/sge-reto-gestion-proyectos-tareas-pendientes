@@ -35,7 +35,7 @@ const formatearFecha = (fechaISO: string | null) => {
 
       <div class="row text-muted small">
         <div class="col-md-3">
-          <strong>Estado:</strong> {{ proyecto.estado }}
+          <strong>Estado:</strong> {{ proyecto.estado }}%
         </div>
         <div class="col-md-3">
           <strong>Asignado a:</strong> {{ proyecto.responsable_principal }}
@@ -50,8 +50,9 @@ const formatearFecha = (fechaISO: string | null) => {
 
       <div class="text-muted small">
         <strong>Tareas asociadas:</strong>
-        <ul>
-          <li v-for="(tarea, index) in proyecto.tareas_asociadas" :key="index">
+        <span v-if="!proyecto.tareas_asociadas?.length"> -</span>
+        <ul v-else class="list-group">
+          <li v-for="(tarea, index) in proyecto.tareas_asociadas" :key="index" class="list-group-item">
             {{ tarea }}
           </li>
         </ul>

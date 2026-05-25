@@ -12,6 +12,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
     const cargarEmpleados = async () => {
         try {
             const {data} = await api.get('/api/empleado/empleados/');
+            data.sort((a: Empleado, b: Empleado) => a.id - b.id)
             empleados.value = data;
         } catch (err) {
             if (axios.isAxiosError(err) || err instanceof Error)
@@ -26,7 +27,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
     const actualizarEmpleado = async (empleado: Empleado) => {
         try {
             const url = `/api/empleado/empleados/${empleado.id}/`;
-            const { data } = await api.patch(url, empleado);
+            const {data} = await api.patch(url, empleado);
             const index = empleados.value.findIndex(e => e.id === empleado.id);
             if (index !== -1) {
                 empleados.value[index] = data;
@@ -41,7 +42,7 @@ export const useEmpleadoStore = defineStore('empleado', () => {
 
     const crearEmpleado = async (empleado: Partial<Empleado>) => {
         try {
-            const { data } = await api.post('/api/empleado/empleados/', empleado);
+            const {data} = await api.post('/api/empleado/empleados/', empleado);
             empleados.value.push(data);
             return true;
         } catch (err) {

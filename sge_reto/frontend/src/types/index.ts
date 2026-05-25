@@ -6,7 +6,7 @@ export interface Empleado {
     email: string;
     telefono: string;
     rol: string;
-    tareas_asignadas: number[]; // Tarea[]
+    tareas_asignadas: number[]; // Tareas
 }
 
 export interface Proyecto {
@@ -17,7 +17,7 @@ export interface Proyecto {
     fecha_fin_prevista: string | null; // fecha ISO 8601
     estado: number; // 0-100%
     responsable_principal: number | null; // Empleado
-    tareas_asociadas: number[]; // Tarea[]
+    tareas_asociadas: number[]; // Tareas
 }
 
 export interface Tarea {
@@ -30,11 +30,13 @@ export interface Tarea {
     fecha_fin_prevista: string | null; // fecha ISO 8601
     proyecto_asociado: number | null; // Proyecto
     responsable_asignado: number | null; // Empleado
+    antecesoras: string[]; // Tareas
+    sucesoras: string[]; // Tareas
 }
 
 export interface Dependencia {
     id: number;
-    tarea_origen: number; // FK Tarea
-    tarea_dependiente: number; // FK Tarea
+    tarea_origen: Tarea;
+    tarea_dependiente: Tarea;
     tipo_dependencia: 'FIN_INI' | 'INI_INI' | 'FIN_FIN'; // choices en el modelo
 }
