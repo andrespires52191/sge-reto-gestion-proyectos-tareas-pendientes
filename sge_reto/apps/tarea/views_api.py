@@ -23,6 +23,8 @@ class DependenciaViewSet(viewsets.ModelViewSet):
     serializer_class = DependenciaSerializer
 
 @api_view(['GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def api_tareas_por_proyecto(request, id_proyecto):
     if id_proyecto == 0:
         tareas = Tarea.objects.all()

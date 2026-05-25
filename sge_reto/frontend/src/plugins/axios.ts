@@ -3,9 +3,10 @@ import { useAuthStore } from '@/stores/authStore';
 
 // Configuración base de axios
 const api = axios.create({
-    baseURL: 'http://127.0.0.1:8000', // URL de tu backend Django
+    baseURL: '/', // Las peticiones serán manejadas por el proxy de Vite
     headers: {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': '69420', // Evita que ngrok intercepte la API con su pantalla de aviso
     },
 });
 
@@ -34,8 +35,10 @@ api.interceptors.response.use(
 
             try {
                 // Intentar refrescar el token
-                const response = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
+                const response = await axios.post('/api/token/refresh/', {
                     refresh: authStore.refreshToken,
+                }, {
+                    headers: { 'ngrok-skip-browser-warning': '69420' }
                 });
 
                 // Guardar el nuevo access_token
@@ -44,8 +47,8 @@ api.interceptors.response.use(
                 // Actualizar el header de la solicitud original
                 originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
 
-                // Reintentar la solicitud original
-                return axios(originalRequest);
+                // Reintentar la solicitud original usando la instancia 'api'
+                return api(originalRequest);
             } catch (refreshError) {
                 // Si falla el refresco, cerrar sesión y redirigir al login
                 authStore.logout();

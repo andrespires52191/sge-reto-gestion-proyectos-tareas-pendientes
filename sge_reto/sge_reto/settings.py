@@ -19,13 +19,13 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# CSRF_TRUSTED_ORIGINS = ['https://drew-maternity-tractor.ngrok-free.dev']
-# CORS_ALLOWED_ORIGINS = [
-# 'http://localhost:5173',
-# 'https://drew-maternity-tractor.ngrok-free.dev',
-# 'http://localhost:5174',
-# 'http://localhost:5175',
-# ]
+CSRF_TRUSTED_ORIGINS = ['https://paddling-tartly-dreary.ngrok-free.dev']
+CORS_ALLOWED_ORIGINS = [
+'http://localhost:5173',
+'https://paddling-tartly-dreary.ngrok-free.dev',
+'http://localhost:5174',
+'http://localhost:5175',
+]
 CORS_ALLOW_ALL_ORIGINS = True  # Permite que el frontend de Vue se conecte sin bloqueos
 
 # Quick-start development settings - unsuitable for production

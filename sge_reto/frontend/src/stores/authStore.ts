@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import {ref, computed} from 'vue';
-import axios from 'axios';
+import api from '@/plugins/axios';
 import {useRouter} from 'vue-router';
 
 export const useAuthStore = defineStore('auth', () => {
@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
     const login = async (username: string, password: string) => {
         try {
             // Más configuración de axios en src/plugins/axios.ts
-            const response = await axios.post('http://127.0.0.1:8000/api/token/', {
+            const response = await api.post('/api/token/', {
                 username,
                 password,
             });
