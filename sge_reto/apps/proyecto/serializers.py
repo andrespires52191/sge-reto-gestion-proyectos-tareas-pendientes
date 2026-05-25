@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from apps.proyecto.models import Proyecto
-from apps.empleado.models import Empleado
 
 
 class ProyectoSerializer(serializers.ModelSerializer):
@@ -21,6 +20,19 @@ class ProyectoSerializer(serializers.ModelSerializer):
             "responsable_principal_lectura",
             "tareas_asociadas",
         ]
+
+    def validate(self, data):
+        fecha_inicio = data.get('fecha_inicio')
+        fecha_fin_prevista = data.get('fecha_fin_prevista')
+        estado = data.get('estado')
+
+        if fecha_fin_prevista < fecha_inicio:
+            raise serializers.ValidationError("La fecha de fin no puede ser anterior a la de inicio.")
+
+        if estado < 0 or estado > 100:
+            raise serializers.ValidationError("El estado debe estar entre 0 y 100.")
+
+        return data
 
     def get_responsable_principal_lectura(self, proyecto):
         if proyecto.responsable_principal is None:

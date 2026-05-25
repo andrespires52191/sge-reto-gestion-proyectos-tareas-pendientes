@@ -1,8 +1,6 @@
 from rest_framework import serializers
 
 from apps.tarea.models import Tarea, Dependencia
-from apps.proyecto.models import Proyecto
-from apps.empleado.models import Empleado
 
 
 class TareaSerializer(serializers.ModelSerializer):
@@ -30,14 +28,23 @@ class TareaSerializer(serializers.ModelSerializer):
             "sucesoras",
         ]
 
+    def validate(self, data):
+        fecha_inicio = data.get('fecha_inicio')
+        fecha_fin_prevista = data.get('fecha_fin_prevista')
+        estado = data.get('estado')
+
+        if fecha_fin_prevista < fecha_inicio:
+            raise serializers.ValidationError("La fecha de fin no puede ser anterior a la de inicio.")
+
+        if estado < 0 or estado > 100:
+            raise serializers.ValidationError("El estado debe estar entre 0 y 100.")
+
+        return data
+
     def get_proyecto_asociado_lectura(self, tarea):
-        if tarea.proyecto_asociado is None:
-            return "?"
         return f"#{tarea.proyecto_asociado.id} - {tarea.proyecto_asociado.nombre}"
 
     def get_responsable_asignado_lectura(self, tarea):
-        if tarea.responsable_asignado is None:
-            return "?"
         return f"#{tarea.responsable_asignado.id} - {tarea.responsable_asignado.nombre} {tarea.responsable_asignado.apellidos}"
 
     def get_antecesoras(self, tarea):
@@ -64,3 +71,15 @@ class DependenciaSerializer(serializers.ModelSerializer):
             "tarea_dependiente_lectura",
             "tipo_dependencia",
         ]
+
+    def validate(self, data):
+        tarea_origen = data.get('tarea_origen')
+        tarea_dependiente = data.get('tarea_dependiente')
+
+        if tarea_origen == tarea_dependiente:
+            raise serializers.ValidationError("Una tarea no puede depender de sí misma.")
+
+        if tarea_origen.proyecto_asociado != tarea_dependiente.proyecto_asociado:
+            raise serializers.ValidationError("Ambas tareas deben pertenecer al mismo proyecto.")
+
+        return data
