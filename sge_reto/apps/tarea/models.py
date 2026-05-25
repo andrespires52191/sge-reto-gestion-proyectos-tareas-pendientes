@@ -23,16 +23,17 @@ from django.db import models
 
 # Create your models here.
 class Tarea(models.Model):
-    titulo = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    estado = models.IntegerField()
+    titulo = models.CharField(max_length=100, null=False, blank=False)
+    descripcion = models.TextField(null=False, default="")
+    estado = models.IntegerField(null=False, default=0)
     prioridad = models.CharField(
         max_length=10,
         choices=(
             ("baja", "Baja"),
             ("media", "Media"),
             ("alta", "Alta"),
-        )
+        ),
+        null=False,
     )
     fecha_inicio = models.DateField(null=True, blank=True)  # null para db, blank para forms
     fecha_fin_prevista = models.DateField(null=True, blank=True)  # null para db, blank para forms
@@ -40,15 +41,15 @@ class Tarea(models.Model):
         "proyecto.Proyecto",
         related_name="tareas_asociadas",  # proyecto.tareas_asociadas.all()
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
     )
     responsable_asignado = models.ForeignKey(
         "empleado.Empleado",
         related_name="tareas_asignadas",  # empleado.tareas_asignadas.all()
         on_delete=models.PROTECT,
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
     )
 
     def __str__(self):
@@ -72,7 +73,8 @@ class Dependencia(models.Model):
             ("FIN_INI", "Fin → Inicio"),
             ("INI_INI", "Inicio → Inicio"),
             ("FIN_FIN", "Fin → Fin"),
-        )
+        ),
+        null=False,
     )
 
     class Meta:

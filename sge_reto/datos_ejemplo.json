@@ -1,0 +1,492 @@
+[
+  {
+    "model": "empleado.empleado",
+    "pk": 1,
+    "fields": {
+      "dni": "11111111A",
+      "nombre": "Ana",
+      "apellidos": "García",
+      "email": "ana@example.com",
+      "telefono": "600111001",
+      "rol": "Jefa de Proyecto"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 2,
+    "fields": {
+      "dni": "22222222B",
+      "nombre": "Bruno",
+      "apellidos": "López",
+      "email": "bruno@example.com",
+      "telefono": "600111002",
+      "rol": "Desarrollador Senior"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 3,
+    "fields": {
+      "dni": "33333333C",
+      "nombre": "Carla",
+      "apellidos": "Sanz",
+      "email": "carla@example.com",
+      "telefono": "600111003",
+      "rol": "Diseñadora UX"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 4,
+    "fields": {
+      "dni": "44444444D",
+      "nombre": "David",
+      "apellidos": "Vera",
+      "email": "david@example.com",
+      "telefono": "600111004",
+      "rol": "Desarrollador Junior"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 5,
+    "fields": {
+      "dni": "55555555E",
+      "nombre": "Elena",
+      "apellidos": "Mora",
+      "email": "elena@example.com",
+      "telefono": "600111005",
+      "rol": "Analista"
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 1,
+    "fields": {
+      "nombre": "Portal Web 2026",
+      "descripcion": "Rediseño completo del portal corporativo utilizando nuevas tecnologías.",
+      "fecha_inicio": "2026-01-01",
+      "fecha_fin_prevista": "2026-06-30",
+      "estado": 40,
+      "responsable_principal": 1
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 2,
+    "fields": {
+      "nombre": "App Móvil Clientes",
+      "descripcion": "Desarrollo de aplicación nativa para gestión de clientes fidelizados.",
+      "fecha_inicio": "2026-02-15",
+      "fecha_fin_prevista": "2026-08-15",
+      "estado": 20,
+      "responsable_principal": 2
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 3,
+    "fields": {
+      "nombre": "Migración Cloud",
+      "descripcion": "Traslado de toda la infraestructura local a servicios en la nube.",
+      "fecha_inicio": "2026-03-01",
+      "fecha_fin_prevista": "2026-05-31",
+      "estado": 80,
+      "responsable_principal": 5
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 4,
+    "fields": {
+      "nombre": "Módulo IA Ventas",
+      "descripcion": "Implementación de sistema de predicción de ventas basado en IA.",
+      "fecha_inicio": "2026-05-01",
+      "fecha_fin_prevista": "2026-12-31",
+      "estado": 5,
+      "responsable_principal": 4
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 5,
+    "fields": {
+      "nombre": "Seguridad Perimetral",
+      "descripcion": "Auditoría y mejora de los sistemas de seguridad de la red interna.",
+      "fecha_inicio": "2026-04-10",
+      "fecha_fin_prevista": "2026-07-10",
+      "estado": 60,
+      "responsable_principal": 1
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 1,
+    "fields": {
+      "titulo": "Análisis de requisitos",
+      "descripcion": "Reuniones con stakeholders para definir el alcance.",
+      "estado": 100,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-01-05",
+      "fecha_fin_prevista": "2026-01-20",
+      "proyecto_asociado": 1,
+      "responsable_asignado": 1
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 2,
+    "fields": {
+      "titulo": "Diseño UI/UX",
+      "descripcion": "Creación de wireframes y prototipos en alta fidelidad.",
+      "estado": 100,
+      "prioridad": "media",
+      "fecha_inicio": "2026-01-21",
+      "fecha_fin_prevista": "2026-02-15",
+      "proyecto_asociado": 1,
+      "responsable_asignado": 3
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 3,
+    "fields": {
+      "titulo": "Maquetación Home",
+      "descripcion": "Implementación de la página principal en el frontend.",
+      "estado": 80,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-02-16",
+      "fecha_fin_prevista": "2026-03-10",
+      "proyecto_asociado": 1,
+      "responsable_asignado": 4
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 4,
+    "fields": {
+      "titulo": "Configuración Backend",
+      "descripcion": "Configuración inicial del servidor y base de datos.",
+      "estado": 100,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-01-15",
+      "fecha_fin_prevista": "2026-01-30",
+      "proyecto_asociado": 1,
+      "responsable_asignado": 2
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 5,
+    "fields": {
+      "titulo": "Integración API Redes",
+      "descripcion": "Conectar el portal con APIs externas de redes sociales.",
+      "estado": 0,
+      "prioridad": "baja",
+      "fecha_inicio": "2026-05-20",
+      "fecha_fin_prevista": "2026-06-05",
+      "proyecto_asociado": 1,
+      "responsable_asignado": 4
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 6,
+    "fields": {
+      "titulo": "Definición Arquitectura App",
+      "descripcion": "Estructura de navegación y servicios de la app móvil.",
+      "estado": 100,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-02-20",
+      "fecha_fin_prevista": "2026-03-05",
+      "proyecto_asociado": 2,
+      "responsable_asignado": 2
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 7,
+    "fields": {
+      "titulo": "Login y Registro",
+      "descripcion": "Pantallas de autenticación de usuarios en la app.",
+      "estado": 40,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-03-06",
+      "fecha_fin_prevista": "2026-04-10",
+      "proyecto_asociado": 2,
+      "responsable_asignado": 4
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 8,
+    "fields": {
+      "titulo": "Perfil de Usuario",
+      "descripcion": "Gestión de datos personales en la aplicación móvil.",
+      "estado": 10,
+      "prioridad": "media",
+      "fecha_inicio": "2026-04-11",
+      "fecha_fin_prevista": "2026-05-15",
+      "proyecto_asociado": 2,
+      "responsable_asignado": 3
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 9,
+    "fields": {
+      "titulo": "Notificaciones Push",
+      "descripcion": "Implementación de Firebase para alertas en el móvil.",
+      "estado": 0,
+      "prioridad": "media",
+      "fecha_inicio": "2026-05-16",
+      "fecha_fin_prevista": "2026-06-20",
+      "proyecto_asociado": 2,
+      "responsable_asignado": 2
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 10,
+    "fields": {
+      "titulo": "Inventario de Servidores",
+      "descripcion": "Listado completo de máquinas a migrar.",
+      "estado": 100,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-03-05",
+      "fecha_fin_prevista": "2026-03-15",
+      "proyecto_asociado": 3,
+      "responsable_asignado": 5
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 11,
+    "fields": {
+      "titulo": "Migración Bases de Datos",
+      "descripcion": "Exportación e importación de datos a RDS.",
+      "estado": 90,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-03-16",
+      "fecha_fin_prevista": "2026-04-15",
+      "proyecto_asociado": 3,
+      "responsable_asignado": 2
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 12,
+    "fields": {
+      "titulo": "Configuración VPN Cloud",
+      "descripcion": "Establecer túnel seguro entre local y nube.",
+      "estado": 100,
+      "prioridad": "media",
+      "fecha_inicio": "2026-03-20",
+      "fecha_fin_prevista": "2026-04-05",
+      "proyecto_asociado": 3,
+      "responsable_asignado": 1
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 13,
+    "fields": {
+      "titulo": "Pruebas de Latencia",
+      "descripcion": "Verificar rendimiento de la red tras la migración.",
+      "estado": 25,
+      "prioridad": "baja",
+      "fecha_inicio": "2026-05-01",
+      "fecha_fin_prevista": "2026-05-30",
+      "proyecto_asociado": 3,
+      "responsable_asignado": 5
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 14,
+    "fields": {
+      "titulo": "Selección de Algoritmo",
+      "descripcion": "Evaluar modelos de regresión para predicción de ventas.",
+      "estado": 50,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-05-05",
+      "fecha_fin_prevista": "2026-05-25",
+      "proyecto_asociado": 4,
+      "responsable_asignado": 5
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 15,
+    "fields": {
+      "titulo": "Limpieza de Dataset",
+      "descripcion": "Preparar datos históricos del último lustro.",
+      "estado": 10,
+      "prioridad": "media",
+      "fecha_inicio": "2026-05-26",
+      "fecha_fin_prevista": "2026-06-30",
+      "proyecto_asociado": 4,
+      "responsable_asignado": 4
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 16,
+    "fields": {
+      "titulo": "Escaneo de Puertos",
+      "descripcion": "Identificación de servicios vulnerables expuestos.",
+      "estado": 100,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-04-15",
+      "fecha_fin_prevista": "2026-04-20",
+      "proyecto_asociado": 5,
+      "responsable_asignado": 1
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 17,
+    "fields": {
+      "titulo": "Actualización de Firewall",
+      "descripcion": "Nuevas reglas de filtrado de tráfico entrante.",
+      "estado": 75,
+      "prioridad": "alta",
+      "fecha_inicio": "2026-04-21",
+      "fecha_fin_prevista": "2026-05-10",
+      "proyecto_asociado": 5,
+      "responsable_asignado": 1
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 18,
+    "fields": {
+      "titulo": "Formación Seguridad",
+      "descripcion": "Charla concienciación empleados contra phishing.",
+      "estado": 100,
+      "prioridad": "baja",
+      "fecha_inicio": "2026-05-15",
+      "fecha_fin_prevista": "2026-05-16",
+      "proyecto_asociado": 5,
+      "responsable_asignado": 3
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 19,
+    "fields": {
+      "titulo": "Backup Políticas",
+      "descripcion": "Revisión de copias de seguridad de bases de datos.",
+      "estado": 30,
+      "prioridad": "media",
+      "fecha_inicio": "2026-05-17",
+      "fecha_fin_prevista": "2026-06-10",
+      "proyecto_asociado": 5,
+      "responsable_asignado": 2
+    }
+  },
+  {
+    "model": "tarea.tarea",
+    "pk": 20,
+    "fields": {
+      "titulo": "Documentación Final",
+      "descripcion": "Manuales técnicos de todos los sistemas mejorados.",
+      "estado": 0,
+      "prioridad": "baja",
+      "fecha_inicio": "2026-06-11",
+      "fecha_fin_prevista": "2026-07-10",
+      "proyecto_asociado": 5,
+      "responsable_asignado": 5
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 1,
+    "fields": {
+      "tarea_origen": 1,
+      "tarea_dependiente": 2,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 2,
+    "fields": {
+      "tarea_origen": 2,
+      "tarea_dependiente": 3,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 3,
+    "fields": {
+      "tarea_origen": 4,
+      "tarea_dependiente": 3,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 4,
+    "fields": {
+      "tarea_origen": 6,
+      "tarea_dependiente": 7,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 5,
+    "fields": {
+      "tarea_origen": 7,
+      "tarea_dependiente": 8,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 6,
+    "fields": {
+      "tarea_origen": 8,
+      "tarea_dependiente": 9,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 7,
+    "fields": {
+      "tarea_origen": 10,
+      "tarea_dependiente": 11,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 8,
+    "fields": {
+      "tarea_origen": 10,
+      "tarea_dependiente": 12,
+      "tipo_dependencia": "INI_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 9,
+    "fields": {
+      "tarea_origen": 11,
+      "tarea_dependiente": 13,
+      "tipo_dependencia": "FIN_INI"
+    }
+  },
+  {
+    "model": "tarea.dependencia",
+    "pk": 10,
+    "fields": {
+      "tarea_origen": 16,
+      "tarea_dependiente": 17,
+      "tipo_dependencia": "FIN_INI"
+    }
+  }
+]

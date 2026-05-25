@@ -86,3 +86,6 @@ Resetear migraciones
 > python manage.py makemigrations tarea
 > 
 > python manage.py migrate tarea
+
+Crear superusuario
+> python manage.py createsuperuser
