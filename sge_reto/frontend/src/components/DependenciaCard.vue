@@ -35,19 +35,19 @@ const emit = defineEmits(['editar', 'borrar'])
         <div class="col-md-6">
           <strong>Tarea Origen:</strong>
           <div class="list-group list-group-item" :class="{
-            'text-muted': dependencia.tarea_origen.estado !== 100,
-            'text-success fw-bold': dependencia.tarea_origen.estado === 100,
+            'text-muted': dependencia.tarea_origen_lectura.estado !== 100,
+            'text-success fw-bold': dependencia.tarea_origen_lectura.estado === 100,
           }">
-            #{{ dependencia.tarea_origen.id }} - {{ dependencia.tarea_origen.titulo }}
+            #{{ dependencia.tarea_origen_lectura.id }} - {{ dependencia.tarea_origen_lectura.titulo }}
           </div>
         </div>
         <div class="col-md-6">
           <strong>Tarea Dependiente:</strong>
           <div class="list-group list-group-item" :class="{
-            'text-muted': dependencia.tarea_dependiente.estado !== 100,
-            'text-success fw-bold': dependencia.tarea_dependiente.estado === 100,
+            'text-muted': dependencia.tarea_dependiente_lectura.estado !== 100,
+            'text-success fw-bold': dependencia.tarea_dependiente_lectura.estado === 100,
           }">
-            #{{ dependencia.tarea_dependiente.id }} - {{ dependencia.tarea_dependiente.titulo }}
+            #{{ dependencia.tarea_dependiente_lectura.id }} - {{ dependencia.tarea_dependiente_lectura.titulo }}
           </div>
         </div>
       </div>

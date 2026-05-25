@@ -38,10 +38,10 @@ const formatearFecha = (fechaISO: string | null) => {
       </p>
       <div class="row text-muted small">
         <div class="col-md-6">
-          <strong>Proyecto:</strong> {{ tarea.proyecto_asociado }}
+          <strong>Proyecto:</strong> {{ tarea.proyecto_asociado_lectura }}
         </div>
         <div class="col-md-4">
-          <strong>Asignada a:</strong> {{ tarea.responsable_asignado || '-' }}
+          <strong>Asignada a:</strong> {{ tarea.responsable_asignado_lectura || '-' }}
         </div>
       </div>
       <div class="row text-muted small">

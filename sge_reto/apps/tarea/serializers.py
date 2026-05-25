@@ -1,12 +1,14 @@
 from rest_framework import serializers
 
 from apps.tarea.models import Tarea, Dependencia
+from apps.proyecto.models import Proyecto
+from apps.empleado.models import Empleado
 
 
 class TareaSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    proyecto_asociado = serializers.SerializerMethodField()
-    responsable_asignado = serializers.SerializerMethodField()
+    proyecto_asociado_lectura = serializers.SerializerMethodField()
+    responsable_asignado_lectura = serializers.SerializerMethodField()
     antecesoras = serializers.SerializerMethodField()
     sucesoras = serializers.SerializerMethodField()
 
@@ -22,16 +24,18 @@ class TareaSerializer(serializers.ModelSerializer):
             "fecha_fin_prevista",
             "proyecto_asociado",
             "responsable_asignado",
+            "proyecto_asociado_lectura",
+            "responsable_asignado_lectura",
             "antecesoras",
             "sucesoras",
         ]
 
-    def get_proyecto_asociado(self, tarea):
+    def get_proyecto_asociado_lectura(self, tarea):
         if tarea.proyecto_asociado is None:
             return "?"
         return f"#{tarea.proyecto_asociado.id} - {tarea.proyecto_asociado.nombre}"
 
-    def get_responsable_asignado(self, tarea):
+    def get_responsable_asignado_lectura(self, tarea):
         if tarea.responsable_asignado is None:
             return "?"
         return f"#{tarea.responsable_asignado.id} - {tarea.responsable_asignado.nombre} {tarea.responsable_asignado.apellidos}"
@@ -47,8 +51,8 @@ class TareaSerializer(serializers.ModelSerializer):
 
 class DependenciaSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    tarea_origen = TareaSerializer(read_only=True)
-    tarea_dependiente = TareaSerializer(read_only=True)
+    tarea_origen_lectura = TareaSerializer(source='tarea_origen', read_only=True)
+    tarea_dependiente_lectura = TareaSerializer(source='tarea_dependiente', read_only=True)
 
     class Meta:
         model = Dependencia
@@ -56,5 +60,7 @@ class DependenciaSerializer(serializers.ModelSerializer):
             "id",
             "tarea_origen",
             "tarea_dependiente",
+            "tarea_origen_lectura",
+            "tarea_dependiente_lectura",
             "tipo_dependencia",
         ]

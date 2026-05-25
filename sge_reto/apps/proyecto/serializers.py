@@ -1,10 +1,11 @@
 from rest_framework import serializers
 
 from apps.proyecto.models import Proyecto
+from apps.empleado.models import Empleado
 
 
 class ProyectoSerializer(serializers.ModelSerializer):
-    responsable_principal = serializers.SerializerMethodField()
+    responsable_principal_lectura = serializers.SerializerMethodField()
     tareas_asociadas = serializers.SerializerMethodField()
 
     class Meta:
@@ -17,11 +18,14 @@ class ProyectoSerializer(serializers.ModelSerializer):
             "fecha_fin_prevista",
             "estado",
             "responsable_principal",
+            "responsable_principal_lectura",
             "tareas_asociadas",
         ]
 
-    def get_responsable_principal(self, empleado):
-        return f"#{empleado.responsable_principal.id} - {empleado.responsable_principal}"
+    def get_responsable_principal_lectura(self, proyecto):
+        if proyecto.responsable_principal is None:
+            return "?"
+        return f"#{proyecto.responsable_principal.id} - {proyecto.responsable_principal}"
 
-    def get_tareas_asociadas(self, empleado):
-        return [f"#{t.id} - {t}" for t in empleado.tareas_asociadas.all()]
+    def get_tareas_asociadas(self, proyecto):
+        return [f"#{t.id} - {t}" for t in proyecto.tareas_asociadas.all()]

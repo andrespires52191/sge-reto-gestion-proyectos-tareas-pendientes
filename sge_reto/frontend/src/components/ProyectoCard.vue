@@ -38,7 +38,7 @@ const formatearFecha = (fechaISO: string | null) => {
           <strong>Estado:</strong> {{ proyecto.estado }}%
         </div>
         <div class="col-md-3">
-          <strong>Asignado a:</strong> {{ proyecto.responsable_principal }}
+          <strong>Asignado a:</strong> {{ proyecto.responsable_principal_lectura }}
         </div>
         <div class="col-md-3">
           <strong>Inicio:</strong> {{ formatearFecha(proyecto.fecha_inicio) || '-' }}
