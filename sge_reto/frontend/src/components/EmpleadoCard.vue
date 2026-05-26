@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 import type {Empleado} from '@/types'
 
 const props = defineProps<{ empleado: Empleado }>()
@@ -43,14 +43,25 @@ const expandido = ref(false)
           </div>
         </div>
 
-        <div class="text-muted small">
-          <strong>Tareas asignadas:</strong>
-          <span v-if="!empleado.tareas_asignadas?.length"> -</span>
-          <ul v-else class="list-group">
-            <li v-for="(tarea, index) in empleado.tareas_asignadas" :key="index" class="list-group-item">
-              {{ tarea }}
-            </li>
-          </ul>
+        <div class="row small text-muted">
+          <div class="col-md-6">
+            <strong>Proyectos asignados:</strong>
+            <span v-if="!empleado.proyectos_asignados?.length"> -</span>
+            <ul v-else class="list-group">
+              <li v-for="(proyecto, index) in empleado.proyectos_asignados" :key="index" class="list-group-item">
+                {{ proyecto }}
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <strong>Tareas asignadas:</strong>
+            <span v-if="!empleado.tareas_asignadas?.length"> -</span>
+            <ul v-else class="list-group">
+              <li v-for="(tarea, index) in empleado.tareas_asignadas" :key="index" class="list-group-item">
+                {{ tarea }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

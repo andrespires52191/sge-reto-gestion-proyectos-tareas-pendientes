@@ -6,6 +6,7 @@ export interface Empleado {
     email: string;
     telefono: string;
     rol: string;
+    proyectos_asignados: string[]; // Proyectos
     tareas_asignadas: string[]; // Tareas
 }
 

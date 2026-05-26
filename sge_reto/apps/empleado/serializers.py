@@ -4,6 +4,7 @@ from apps.empleado.models import Empleado
 
 
 class EmpleadoSerializer(serializers.ModelSerializer):
+    proyectos_asignados = serializers.SerializerMethodField()
     tareas_asignadas = serializers.SerializerMethodField()
 
     class Meta:
@@ -16,6 +17,7 @@ class EmpleadoSerializer(serializers.ModelSerializer):
             "email",
             "telefono",
             "rol",
+            "proyectos_asignados",
             "tareas_asignadas",
         ]
 
@@ -26,6 +28,10 @@ class EmpleadoSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"dni": "El DNI debe tener 9 caracteres."})
 
         return data
+
+    def get_proyectos_asignados(self, empleado):
+        return [f"#{p.id} - {p.nombre}"
+                for p in empleado.proyectos_asignados.all()]
 
     def get_tareas_asignadas(self, empleado):
         return [f"[#{t.proyecto_asociado.id} - {t.proyecto_asociado}] #{t.id} - {t}"
