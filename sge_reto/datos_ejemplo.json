@@ -60,6 +60,66 @@
     }
   },
   {
+    "model": "empleado.empleado",
+    "pk": 6,
+    "fields": {
+      "dni": "66666666F",
+      "nombre": "Fernando",
+      "apellidos": "Ruiz",
+      "email": "fernando@example.com",
+      "telefono": "600111006",
+      "rol": "QA Tester"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 7,
+    "fields": {
+      "dni": "77777777G",
+      "nombre": "Gloria",
+      "apellidos": "Pérez",
+      "email": "gloria@example.com",
+      "telefono": "600111007",
+      "rol": "DevOps Engineer"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 8,
+    "fields": {
+      "dni": "88888888H",
+      "nombre": "Hugo",
+      "apellidos": "Sánchez",
+      "email": "hugo@example.com",
+      "telefono": "600111008",
+      "rol": "Arquitecto de Software"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 9,
+    "fields": {
+      "dni": "99999999I",
+      "nombre": "Isabel",
+      "apellidos": "Jiménez",
+      "email": "isabel@example.com",
+      "telefono": "600111009",
+      "rol": "Scrum Master"
+    }
+  },
+  {
+    "model": "empleado.empleado",
+    "pk": 10,
+    "fields": {
+      "dni": "00000000J",
+      "nombre": "Jorge",
+      "apellidos": "Castro",
+      "email": "jorge@example.com",
+      "telefono": "600111010",
+      "rol": "Especialista en Seguridad"
+    }
+  },
+  {
     "model": "proyecto.proyecto",
     "pk": 1,
     "fields": {
@@ -117,6 +177,66 @@
       "fecha_fin_prevista": "2026-07-10",
       "estado": 60,
       "responsable_principal": 1
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 6,
+    "fields": {
+      "nombre": "Plataforma E-learning",
+      "descripcion": "Creación de un sistema de formación online para empleados.",
+      "fecha_inicio": "2026-07-01",
+      "fecha_fin_prevista": "2026-12-31",
+      "estado": 0,
+      "responsable_principal": 9
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 7,
+    "fields": {
+      "nombre": "Dashboard Directivos",
+      "descripcion": "Visualización de KPIs en tiempo real para la toma de decisiones.",
+      "fecha_inicio": "2026-08-01",
+      "fecha_fin_prevista": "2026-11-30",
+      "estado": 10,
+      "responsable_principal": 8
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 8,
+    "fields": {
+      "nombre": "Optimización SEO",
+      "descripcion": "Mejora del posicionamiento orgánico en buscadores principales.",
+      "fecha_inicio": "2026-06-15",
+      "fecha_fin_prevista": "2026-09-15",
+      "estado": 30,
+      "responsable_principal": 1
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 9,
+    "fields": {
+      "nombre": "Pasarela de Pagos v2",
+      "descripcion": "Integración de nuevos métodos de pago electrónico.",
+      "fecha_inicio": "2026-09-01",
+      "fecha_fin_prevista": "2027-02-28",
+      "estado": 0,
+      "responsable_principal": 2
+    }
+  },
+  {
+    "model": "proyecto.proyecto",
+    "pk": 10,
+    "fields": {
+      "nombre": "Chatbot Soporte",
+      "descripcion": "Atención automatizada de primer nivel para usuarios externos.",
+      "fecha_inicio": "2026-10-01",
+      "fecha_fin_prevista": "2026-12-15",
+      "estado": 5,
+      "responsable_principal": 10
     }
   },
   {
