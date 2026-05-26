@@ -39,6 +39,15 @@ class TareaSerializer(serializers.ModelSerializer):
         if estado < 0 or estado > 100:
             raise serializers.ValidationError("El estado debe estar entre 0 y 100.")
 
+        # Si el usuario intenta poner la tarea al 100%
+        if estado == 100 and self.instance:
+            # Buscamos todas sus dependencias
+            dependencias = Dependencia.objects.filter(tarea_dependiente=self.instance)
+            for dep in dependencias:
+                # Si alguna no está terminada, lanzamos el error
+                if dep.tarea_origen.estado < 100:
+                    raise serializers.ValidationError(f"Dependencia(s) sin completar.")
+
         return data
 
     def get_proyecto_asociado_lectura(self, tarea):
