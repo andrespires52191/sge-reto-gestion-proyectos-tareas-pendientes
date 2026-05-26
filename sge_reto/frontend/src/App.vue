@@ -15,22 +15,22 @@ const authStore = useAuthStore();
         </RouterLink>
         <ul class="nav nav-tabs border-0 col-12 col-lg-8">
           <li v-if="authStore.isAuthenticated" class="nav-item d-none d-sm-inline">
-            <RouterLink to="/" class="nav-link" exact-active-class="active">Inicio</RouterLink>
+            <RouterLink to="/" class="nav-link px-1 px-sm-3" exact-active-class="active">Inicio</RouterLink>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
-            <RouterLink to="/empleado" class="nav-link" exact-active-class="active">Empleados</RouterLink>
+            <RouterLink to="/empleado" class="nav-link px-1 px-sm-3" exact-active-class="active">Empleados</RouterLink>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
-            <RouterLink to="/proyecto" class="nav-link" exact-active-class="active">Proyectos</RouterLink>
+            <RouterLink to="/proyecto" class="nav-link px-1 px-sm-3" exact-active-class="active">Proyectos</RouterLink>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
-            <RouterLink to="/tarea" class="nav-link" exact-active-class="active">Tareas</RouterLink>
+            <RouterLink to="/tarea" class="nav-link px-1 px-sm-3" exact-active-class="active">Tareas</RouterLink>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item">
-            <RouterLink to="/dependencia" class="nav-link" exact-active-class="active">Dependencias</RouterLink>
+            <RouterLink to="/dependencia" class="nav-link px-1 px-sm-3" exact-active-class="active">Dependencias</RouterLink>
           </li>
           <li v-if="!authStore.isAuthenticated" class="nav-item d-none d-sm-inline">
-            <RouterLink to="/login" class="nav-link" exact-active-class="active">Login</RouterLink>
+            <RouterLink to="/login" class="nav-link px-1 px-sm-3" exact-active-class="active">Login</RouterLink>
           </li>
         </ul>
       </div>
