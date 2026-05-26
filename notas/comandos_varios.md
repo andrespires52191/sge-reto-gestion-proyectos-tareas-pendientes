@@ -59,7 +59,7 @@ Se le puede poner usuario y contraseña a la conexión. Por si mismos, estos
 datos no son permanentes solo valen mientras se esta ejecutando el comando.
 > ngrok http 8000
 > 
-> ngrok http 8000 --basic-auth "usuario:contraseña"
+> ngrok http 5173 --basic-auth "usuario:contraseña"
 
 
 ## manage.py
