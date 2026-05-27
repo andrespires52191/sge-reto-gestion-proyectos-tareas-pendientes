@@ -61,11 +61,11 @@ const guardar = async () => {
         </div>
         <div class="col-md-3">
           <label>Inicio:</label>
-          <input v-model="editTarea.fecha_inicio" type="datetime-local" class="form-control form-control-sm"/>
+          <input v-model="editTarea.fecha_inicio" type="date" class="form-control form-control-sm"/>
         </div>
         <div class="col-md-3">
           <label>Previsto:</label>
-          <input v-model="editTarea.fecha_fin_prevista" type="datetime-local" class="form-control form-control-sm"/>
+          <input v-model="editTarea.fecha_fin_prevista" type="date" class="form-control form-control-sm"/>
         </div>
       </div>
 
