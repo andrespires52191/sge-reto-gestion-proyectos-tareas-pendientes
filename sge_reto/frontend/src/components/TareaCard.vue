@@ -18,7 +18,7 @@ const formatearFecha = (fechaISO: string | null) => {
 <template>
   <div class="card mb-3 bg-light-subtle shadow"
        :class="{
-        'border-success': tarea.estado === 100,
+        'border-success border-2': tarea.estado === 100,
         'border-secondary-subtle ': tarea.estado !== 100,
       }">
     <div class="card-body">
