@@ -35,7 +35,7 @@ const authStore = useAuthStore();
         </ul>
       </div>
     </nav>
-    <div class="flex-grow-1 p-3 col-xxl-8 col-xl-10 m-auto">
+    <div class="flex-grow-1 p-3 col-12 col-xl-10 col-xxl-8 m-auto">
       <RouterView/>
     </div>
   </div>
