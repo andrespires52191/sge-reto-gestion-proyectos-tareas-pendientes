@@ -140,7 +140,7 @@
       "fecha_inicio": "2026-02-15",
       "fecha_fin_prevista": "2026-08-15",
       "estado": 20,
-      "responsable_principal": 2
+      "responsable_principal": 6
     }
   },
   {
@@ -152,7 +152,7 @@
       "fecha_inicio": "2026-03-01",
       "fecha_fin_prevista": "2026-05-31",
       "estado": 80,
-      "responsable_principal": 5
+      "responsable_principal": 7
     }
   },
   {
@@ -164,7 +164,7 @@
       "fecha_inicio": "2026-05-01",
       "fecha_fin_prevista": "2026-12-31",
       "estado": 5,
-      "responsable_principal": 4
+      "responsable_principal": 10
     }
   },
   {
@@ -250,7 +250,7 @@
       "fecha_inicio": "2026-01-05",
       "fecha_fin_prevista": "2026-01-20",
       "proyecto_asociado": 1,
-      "responsable_asignado": 1
+      "responsable_asignado": 7
     }
   },
   {
@@ -264,7 +264,7 @@
       "fecha_inicio": "2026-01-21",
       "fecha_fin_prevista": "2026-02-15",
       "proyecto_asociado": 1,
-      "responsable_asignado": 3
+      "responsable_asignado": 8
     }
   },
   {
