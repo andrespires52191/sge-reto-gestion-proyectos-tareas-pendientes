@@ -40,7 +40,7 @@ class Tarea(models.Model):
     proyecto_asociado = models.ForeignKey(
         "proyecto.Proyecto",
         related_name="tareas_asociadas",  # proyecto.tareas_asociadas.all()
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         null=False,
         blank=False,
     )
@@ -60,12 +60,12 @@ class Dependencia(models.Model):
     tarea_origen = models.ForeignKey(
         Tarea,
         related_name='deps_antecesoras',  # tarea.deps_antecesoras.all()
-        on_delete=models.CASCADE
+        on_delete=models.PROTECT
     )
     tarea_dependiente = models.ForeignKey(
         Tarea,
         related_name='deps_sucesoras',  # tarea.deps_sucesoras.all()
-        on_delete=models.CASCADE
+        on_delete=models.PROTECT
     )
     tipo_dependencia = models.CharField(
         max_length=50,
