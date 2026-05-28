@@ -31,6 +31,12 @@ const guardar = async () => {
       </h5>
 
       <div class="mb-2">
+        <label class="small text-muted">Título</label>
+        <input v-model="editTarea.titulo" class="form-control form-control-sm" placeholder="Título de la tarea"/>
+      </div>
+
+      <div class="mb-2">
+        <label class="small text-muted">Descripción</label>
         <textarea v-model="editTarea.descripcion" class="form-control form-control-sm" rows="2"
                   placeholder="Descripción"></textarea>
       </div>

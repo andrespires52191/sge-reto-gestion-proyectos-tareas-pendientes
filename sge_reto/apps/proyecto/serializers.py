@@ -26,10 +26,10 @@ class ProyectoSerializer(serializers.ModelSerializer):
         fecha_fin_prevista = data.get('fecha_fin_prevista')
         estado = data.get('estado')
 
-        if fecha_fin_prevista < fecha_inicio:
+        if fecha_inicio and fecha_fin_prevista and fecha_fin_prevista < fecha_inicio:
             raise serializers.ValidationError("La fecha de fin no puede ser anterior a la de inicio.")
 
-        if estado < 0 or estado > 100:
+        if estado is not None and (estado < 0 or estado > 100):
             raise serializers.ValidationError("El estado debe estar entre 0 y 100.")
 
         return data

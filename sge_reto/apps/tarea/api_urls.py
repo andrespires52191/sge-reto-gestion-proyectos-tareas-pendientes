@@ -10,8 +10,11 @@ router = DefaultRouter()
 router.register(r'tareas', TareaViewSet, basename='api-tareas')
 router.register(r'dependencias', DependenciaViewSet, basename='api-dependencias')
 
-urlpatterns = [
-    path('por-proyecto/<int:id_proyecto>/', api_tareas_por_proyecto, name='api-tareas-por-proyecto'),
-]
+# Sin terminar de implementar
+# urlpatterns = [
+#     path('por-proyecto/<int:id_proyecto>/', api_tareas_por_proyecto, name='api-tareas-por-proyecto'),
+# ]
+#
+# urlpatterns += router.urls
 
-urlpatterns += router.urls
+urlpatterns = router.urls
